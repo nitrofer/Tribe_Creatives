@@ -19,849 +19,376 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 999;
-      background: rgba(250,250,247,0.96);
-      backdrop-filter: blur(8px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(250,250,247,0.96); backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(184,153,88,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 2rem;
-      transition: box-shadow 0.3s;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 2rem; transition: box-shadow 0.3s;
     }
     nav.scrolled { box-shadow: 0 2px 20px rgba(29,91,58,0.1); }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-    .nav-logo img {
-      height: 52px;
-      width: 52px;
-      object-fit: contain;
-    }
-    .nav-brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    .nav-brand .tribe {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 0.08em;
-    }
-    .nav-brand .creatives {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--purple);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--dark);
-      position: relative;
-      padding-bottom: 3px;
-      transition: color 0.2s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 1.5px;
-      background: var(--gold);
-      transition: width 0.3s ease;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { height: 52px; width: 52px; object-fit: contain; }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-brand .tribe { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
+    .nav-brand .creatives { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 400; color: var(--purple); letter-spacing: 0.2em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--gold); position: relative; padding-bottom: 3px; transition: color 0.2s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--purple); transition: width 0.3s ease; }
     .nav-links a:hover { color: var(--green); }
     .nav-links a:hover::after { width: 100%; }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 25px;
-      height: 2px;
-      background: var(--green);
-      transition: all 0.3s;
-    }
-
-    /* Mobile Nav */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 72px; left: 0; right: 0;
-      background: rgba(250,250,247,0.98);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem 2rem 2rem;
-      z-index: 998;
-      border-bottom: 1px solid rgba(184,153,88,0.25);
-      flex-direction: column;
-      gap: 1.25rem;
-    }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 25px; height: 2px; background: var(--green); transition: all 0.3s; }
+    .mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(250,250,247,0.98); backdrop-filter: blur(12px); padding: 1.5rem 2rem 2rem; z-index: 998; border-bottom: 1px solid rgba(184,153,88,0.25); flex-direction: column; gap: 1.25rem; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none;
-      font-size: 1rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--dark);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(184,153,88,0.15);
-      transition: color 0.2s;
-    }
+    .mobile-menu a { text-decoration: none; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--dark); padding: 0.5rem 0; border-bottom: 1px solid rgba(184,153,88,0.15); transition: color 0.2s; }
     .mobile-menu a:hover { color: var(--green); }
 
     /* ── HERO ── */
-    #home {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 7rem 2rem 4rem;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(29,91,58,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 30%, rgba(107,45,140,0.06) 0%, transparent 60%),
-        var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-ornament {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      border: 1px solid rgba(184,153,88,0.08);
-      pointer-events: none;
-    }
-    .hero-bg-ornament::before {
-      content: '';
-      position: absolute;
-      inset: 40px;
-      border-radius: 50%;
-      border: 1px solid rgba(184,153,88,0.05);
-    }
-
-    .hero-logo {
-      width: min(280px, 65vw);
-      height: auto;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 1s ease both;
-      filter: drop-shadow(0 8px 30px rgba(29,91,58,0.12));
-    }
-
-    .hero-tagline {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.2;
-      max-width: 700px;
-      animation: fadeUp 1s 0.2s ease both;
-      margin-bottom: 0.75rem;
-    }
-    .hero-tagline em {
-      font-style: italic;
-      color: var(--purple);
-    }
-
-    .hero-motto {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      animation: fadeUp 1s 0.35s ease both;
-      margin-bottom: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .gold-divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      justify-content: center;
-      animation: fadeUp 1s 0.45s ease both;
-      margin-bottom: 2rem;
-    }
-    .gold-divider::before,
-    .gold-divider::after {
-      content: '';
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold));
-    }
+    #home { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 4rem; background: radial-gradient(ellipse at 20% 50%, rgba(29,91,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(107,45,140,0.06) 0%, transparent 60%), var(--cream); position: relative; overflow: hidden; }
+    .hero-bg-ornament { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; border-radius: 50%; border: 3px solid rgba(184,153,88,0.1); pointer-events: none; }
+    .hero-bg-ornament::before { content: ''; position: absolute; inset: 40px; border-radius: 50%; border: 3px solid rgba(184,153,88,0.1); }
+    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; color: var(--green); line-height: 1.2; max-width: 700px; animation: fadeUp 1s 0.2s ease both; margin-bottom: 0.75rem; }
+    .hero-tagline em { font-style: italic; color: var(--purple); }
+    .hero-motto { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 700; animation: fadeUp 1s 0.35s ease both; margin-bottom: 1.5rem; margin-top: 1.5rem; }
+    .gold-divider { display: flex; align-items: center; gap: 1rem; justify-content: center; animation: fadeUp 1s 0.45s ease both; margin-bottom: 2rem; }
+    .gold-divider::before, .gold-divider::after { content: ''; width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
     .gold-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
     .gold-divider svg { width: 18px; height: 18px; }
+    .hero-desc { font-size: clamp(0.95rem, 2vw, 1.1rem); color: #444; max-width: 600px; line-height: 1.8; font-weight: 300; animation: fadeUp 1s 0.5s ease both; margin-bottom: 2.5rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 1s 0.6s ease both; }
 
-    .hero-desc {
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: #444;
-      max-width: 600px;
-      line-height: 1.8;
-      font-weight: 300;
-      animation: fadeUp 1s 0.5s ease both;
-      margin-bottom: 2.5rem;
-    }
+    /* ── BUTTONS ── */
+    .btn-primary { background: var(--green); color: white; padding: 0.85rem 2.25rem; border: none; font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 4px 20px rgba(29,91,58,0.25); display: inline-block; }
+    .btn-primary:hover { background: #164a2d; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(29,91,58,0.3); }
+    .btn-outline { background: transparent; color: var(--gold); padding: 0.85rem 2.25rem; border: 1.5px solid var(--gold); font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.25s; display: inline-block; }
+    .btn-outline:hover { background: var(--purple); color: white; transform: translateY(-2px); }
 
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 1s 0.6s ease both;
-    }
-
-    .btn-primary {
-      background: var(--green);
-      color: white;
-      padding: 0.85rem 2.25rem;
-      border: none;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(29,91,58,0.25);
-    }
-    .btn-primary:hover {
-      background: #164a2d;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(29,91,58,0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--purple);
-      padding: 0.85rem 2.25rem;
-      border: 1.5px solid var(--purple);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .btn-outline:hover {
-      background: var(--purple);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* ── SECTION COMMON ── */
-    section {
-      padding: 6rem 2rem;
-    }
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 600;
-      color: var(--green);
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-    .section-title em {
-      font-style: italic;
-      color: var(--purple);
-    }
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      max-width: 120px;
-      height: 1px;
-      background: linear-gradient(to right, var(--gold), transparent);
-    }
-    .section-divider-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-    }
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; color: var(--green); line-height: 1.2; margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; color: var(--purple); }
+    .section-divider { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .section-divider::after { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
+    .section-divider-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
 
     /* ── ABOUT ── */
-    #about {
-      background: var(--white);
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .about-image-wrap {
-      position: relative;
-    }
-    .about-img-placeholder {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg, var(--light-green) 0%, rgba(107,45,140,0.08) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-img-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 20px;
-      border: 1px solid rgba(184,153,88,0.3);
-    }
-    .about-img-placeholder img {
-      width: 55%;
-      opacity: 0.35;
-      filter: grayscale(0.2);
-    }
-    .about-accent-box {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      background: var(--green);
-      color: white;
-      padding: 1.75rem 2rem;
-      text-align: center;
-    }
-    .about-accent-box .num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--gold);
-      display: block;
-      line-height: 1;
-    }
-    .about-accent-box .label {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-top: 0.25rem;
-      display: block;
-    }
-    .about-text p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: #444;
-      font-weight: 300;
-      margin-bottom: 1.25rem;
-    }
-    .about-pillars {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
-    .pillar {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .pillar-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--light-green);
-      border: 1px solid rgba(29,91,58,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-image-wrap { position: relative; }
+    .about-img-placeholder { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, var(--light-green) 0%, rgba(107,45,140,0.08) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .about-img-placeholder::before { content: ''; position: absolute; inset: 20px; border: 1px solid rgba(184,153,88,0.3); }
+    .about-img-placeholder img { width: 55%; opacity: 0.35; filter: grayscale(0.2); }
+    .about-accent-box { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--green); color: white; padding: 1.75rem 2rem; text-align: center; }
+    .about-accent-box .num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); display: block; line-height: 1; }
+    .about-accent-box .label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-top: 0.25rem; display: block; }
+    .about-text p { font-size: 1.05rem; line-height: 1.85; color: #444; font-weight: 300; margin-bottom: 1.25rem; }
+    .about-pillars { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .pillar { display: flex; align-items: flex-start; gap: 1rem; }
+    .pillar-icon { width: 36px; height: 36px; background: var(--light-green); border: 1px solid rgba(29,91,58,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .pillar-icon svg { width: 16px; height: 16px; }
-    .pillar-text strong {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 0.05em;
-      margin-bottom: 0.2rem;
-    }
-    .pillar-text span {
-      font-size: 0.9rem;
-      color: #666;
-      font-weight: 300;
-    }
+    .pillar-text strong { display: block; font-size: 0.85rem; font-weight: 700; color: var(--green); letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+    .pillar-text span { font-size: 0.9rem; color: #666; font-weight: 300; }
 
     /* ── SERVICES ── */
-    #services {
-      background: var(--cream);
-    }
-    .services-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .services-header .section-divider {
-      justify-content: center;
-    }
-    .services-header .section-divider::before {
-      content: '';
-      flex: 1;
-      max-width: 120px;
-      height: 1px;
-      background: linear-gradient(to left, var(--gold), transparent);
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-    .service-card {
-      background: var(--white);
-      border: 1px solid rgba(184,153,88,0.15);
-      padding: 2.5rem 2rem;
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(to right, var(--green), var(--purple));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
+    #services { background: var(--cream); }
+    .services-header { text-align: center; margin-bottom: 4rem; }
+    .services-header .section-divider { justify-content: center; }
+    .services-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, var(--gold), transparent); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .service-card { background: var(--white); border: 1px solid rgba(184,153,88,0.15); padding: 2.5rem 2rem; position: relative; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; display: flex; flex-direction: column; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--green), var(--purple)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(29,91,58,0.1); }
     .service-card:hover::before { transform: scaleX(1); }
-    .service-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--light-green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      transition: background 0.3s;
-    }
+    .service-icon { width: 56px; height: 56px; background: var(--light-green); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; transition: background 0.3s; }
     .service-card:hover .service-icon { background: var(--green); }
     .service-card:hover .service-icon svg path,
     .service-card:hover .service-icon svg circle,
-    .service-card:hover .service-icon svg rect {
-      stroke: white !important;
-    }
+    .service-card:hover .service-icon svg rect,
+    .service-card:hover .service-icon svg polygon,
+    .service-card:hover .service-icon svg polyline,
+    .service-card:hover .service-icon svg line { stroke: white !important; }
     .service-icon svg { width: 24px; height: 24px; }
-    .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--green); margin-bottom: 0.75rem; }
+    .service-card > p { font-size: 0.92rem; color: #666; line-height: 1.7; font-weight: 300; flex: 1; }
+    .service-tag { display: block; margin-top: 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; border-top: 1px solid rgba(184,153,88,0.3); padding-top: 0.75rem; }
+
+    /* ── BOOK NOW BUTTON ── */
+    .btn-book-now {
+      display: block; width: 100%; margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: transparent;
       color: var(--green);
-      margin-bottom: 0.75rem;
+      border: 1.5px solid var(--green);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.76rem; letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 700;
+      text-align: center; cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
     }
-    .service-card p {
-      font-size: 0.92rem;
-      color: #666;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .service-tag {
-      display: inline-block;
-      margin-top: 1.25rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      border-top: 1px solid rgba(184,153,88,0.3);
-      padding-top: 0.75rem;
-      width: 100%;
+    .btn-book-now:hover {
+      background: var(--green); color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(29,91,58,0.28);
     }
 
     /* ── SHOWCASE ── */
-    #showcase {
-      background: var(--green);
-      color: white;
-    }
+    #showcase { background: var(--green); color: white; }
     #showcase .section-title { color: var(--gold); }
     #showcase .section-label { color: rgba(184,153,88,0.8); }
     .showcase-header { text-align: center; margin-bottom: 3.5rem; }
     .showcase-header .section-divider { justify-content: center; }
-    .showcase-header .section-divider::before {
-      content: '';
-      flex: 1;
-      max-width: 120px;
-      height: 1px;
-      background: linear-gradient(to left, rgba(184,153,88,0.5), transparent);
-    }
-    .showcase-header .section-divider::after {
-      background: linear-gradient(to right, rgba(184,153,88,0.5), transparent);
-    }
+    .showcase-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, rgba(184,153,88,0.5), transparent); }
+    .showcase-header .section-divider::after { background: linear-gradient(to right, rgba(184,153,88,0.5), transparent); }
     .showcase-header .section-divider-dot { background: var(--gold); }
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .showcase-item {
-      aspect-ratio: 4/5;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(184,153,88,0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.3s;
-    }
+    .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .showcase-item { aspect-ratio: 4/5; background: rgba(255,255,255,0.08); border: 1px solid rgba(184,153,88,0.2); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.3s; }
     .showcase-item:hover { border-color: rgba(184,153,88,0.6); }
-    .showcase-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.15;
-    }
+    .showcase-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.15; }
     .showcase-placeholder svg { width: 60px; height: 60px; }
-    .showcase-label {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-    .showcase-label span {
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      display: block;
-    }
-    .showcase-label p {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: white;
-      margin-top: 0.25rem;
-    }
-    .showcase-coming {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      font-weight: 300;
-      letter-spacing: 0.1em;
-    }
+    .showcase-label { position: relative; z-index: 1; text-align: center; }
+    .showcase-label span { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; }
+    .showcase-label p { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; margin-top: 0.25rem; }
+    .showcase-coming { text-align: center; margin-top: 3rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.1em; }
 
     /* ── REVIEWS ── */
-    #reviews {
-      background: var(--white);
-    }
+    #reviews { background: var(--white); }
     .reviews-header { text-align: center; margin-bottom: 3.5rem; }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-    .review-card {
-      border: 1px solid rgba(184,153,88,0.15);
-      padding: 2.25rem 2rem;
-      position: relative;
-      background: var(--cream);
-    }
-    .review-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      color: rgba(184,153,88,0.15);
-      line-height: 0.5;
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-    .review-text {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.75;
-      font-weight: 300;
-      font-style: italic;
-      margin-bottom: 1.5rem;
-    }
-    .review-stars {
-      display: flex;
-      gap: 3px;
-      margin-bottom: 1rem;
-    }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .review-card { border: 1px solid rgba(184,153,88,0.15); padding: 2.25rem 2rem; position: relative; background: var(--cream); }
+    .review-quote { font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(184,153,88,0.15); line-height: 0.5; margin-bottom: 1.25rem; display: block; }
+    .review-text { font-size: 0.95rem; color: #555; line-height: 1.75; font-weight: 300; font-style: italic; margin-bottom: 1.5rem; }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 1rem; }
     .star { color: var(--gold); font-size: 0.85rem; }
-    .reviewer-name {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 0.08em;
-    }
-    .reviewer-event {
-      font-size: 0.78rem;
-      color: var(--berry);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 0.2rem;
-    }
+    .reviewer-name { font-size: 0.85rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
+    .reviewer-event { font-size: 0.78rem; color: var(--berry); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
 
     /* ── CONTACT ── */
-    #contact {
-      background: linear-gradient(135deg, var(--light-green) 0%, rgba(107,45,140,0.04) 100%);
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .contact-info h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-      font-weight: 600;
-      color: var(--green);
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
+    #contact { background: linear-gradient(135deg, var(--light-green) 0%, rgba(107,45,140,0.04) 100%); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-info h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 600; color: var(--green); margin-bottom: 1rem; line-height: 1.2; }
     .contact-info h2 em { color: var(--purple); font-style: italic; }
-    .contact-info p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.75;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .contact-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .contact-row-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--white);
-      border: 1px solid rgba(184,153,88,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .contact-info p { font-size: 1rem; color: #555; line-height: 1.75; font-weight: 300; margin-bottom: 2.5rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-row { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-row-icon { width: 42px; height: 42px; background: var(--white); border: 1px solid rgba(184,153,88,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .contact-row-icon svg { width: 18px; height: 18px; }
-    .contact-row-text a,
-    .contact-row-text span {
-      display: block;
-      font-size: 0.9rem;
-      color: #444;
-      text-decoration: none;
-      font-weight: 300;
-      transition: color 0.2s;
-    }
+    .contact-row-text a, .contact-row-text span { display: block; font-size: 0.9rem; color: #444; text-decoration: none; font-weight: 300; transition: color 0.2s; }
     .contact-row-text a:hover { color: var(--green); }
-    .contact-row-text strong {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-    .contact-form-wrap {
-      background: var(--white);
-      border: 1px solid rgba(184,153,88,0.15);
-      padding: 3rem 2.5rem;
-    }
-    .contact-form-wrap h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--green);
-      margin-bottom: 2rem;
-      font-weight: 600;
-    }
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--dark);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border: 1px solid rgba(0,0,0,0.12);
-      background: var(--cream);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.92rem;
-      color: var(--dark);
-      font-weight: 300;
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--green);
-    }
+    .contact-row-text strong { display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 0.2rem; }
+    .contact-form-wrap { background: var(--white); border: 1px solid rgba(184,153,88,0.15); padding: 3rem 2.5rem; }
+    .contact-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--green); margin-bottom: 2rem; font-weight: 600; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); font-weight: 700; margin-bottom: 0.5rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1rem; border: 1px solid rgba(0,0,0,0.12); background: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.92rem; color: var(--dark); font-weight: 300; outline: none; transition: border-color 0.2s; appearance: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); }
     .form-group textarea { resize: vertical; min-height: 120px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.7);
-      padding: 3rem 2rem 2rem;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1.5rem;
-    }
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .footer-logo img {
-      height: 48px;
-      width: 48px;
-      object-fit: contain;
-      opacity: 0.9;
-    }
-    .footer-brand .tribe {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-    }
-    .footer-brand .creatives {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.72rem;
-      color: rgba(184,153,88,0.65);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-    .footer-motto {
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(184,153,88,0.5);
-    }
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .footer-links a {
-      text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.08);
-    }
-    .footer-bottom {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.3);
-    }
-    .footer-bottom a {
-      color: rgba(184,153,88,0.5);
-      text-decoration: none;
-    }
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 3rem 2rem 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
+    .footer-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .footer-logo img { height: 48px; width: 48px; object-fit: contain; opacity: 0.9; }
+    .footer-brand .tribe { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; }
+    .footer-brand .creatives { font-family: 'Playfair Display', serif; font-size: 0.72rem; color: rgba(184,153,88,0.65); letter-spacing: 0.2em; text-transform: uppercase; }
+    .footer-motto { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(184,153,88,0.5); }
+    .footer-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); }
+    .footer-bottom { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(184,153,88,0.5); text-decoration: none; }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════
+       MODAL — SHARED BASE
+    ══════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(20, 20, 20, 0.72);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    /* ── STEP 1: SERVICE INFO MODAL ── */
+    .svc-modal {
+      background: var(--white);
+      width: 100%; max-width: 540px;
+      max-height: 90vh; overflow-y: auto;
+      position: relative;
+      transform: translateY(28px) scale(0.98);
+      transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
+    }
+    .modal-overlay.active .svc-modal { transform: translateY(0) scale(1); }
+
+    .svc-modal-head {
+      background: linear-gradient(135deg, var(--green) 0%, #154d31 100%);
+      padding: 2rem 2.25rem 1.75rem;
+      position: relative;
+    }
+    .svc-modal-eyebrow {
+      font-size: 0.67rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; display: block; margin-bottom: 0.5rem;
+    }
+    .svc-modal-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 600; color: white; line-height: 1.25;
+    }
+    .modal-x {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      width: 34px; height: 34px; border: none; cursor: pointer;
+      background: rgba(255,255,255,0.14); color: white;
+      font-size: 1.15rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-x:hover { background: rgba(255,255,255,0.28); }
+
+    .svc-modal-body { padding: 1.75rem 2.25rem 2.25rem; }
+    .svc-desc { font-size: 0.97rem; color: #555; line-height: 1.8; font-weight: 300; margin-bottom: 1.5rem; }
+
+    .svc-includes {
+      background: var(--light-green);
+      border-left: 3px solid var(--green);
+      padding: 1.1rem 1.4rem; margin-bottom: 1.75rem;
+    }
+    .svc-includes-label {
+      font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); font-weight: 700; display: block; margin-bottom: 0.65rem;
+    }
+    .svc-includes ul { list-style: none; display: flex; flex-direction: column; gap: 0.38rem; }
+    .svc-includes ul li {
+      font-size: 0.88rem; color: #444; font-weight: 300;
+      display: flex; align-items: center; gap: 0.55rem;
+    }
+    .svc-includes ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    .svc-note { font-size: 0.81rem; color: var(--berry); font-style: italic; margin-bottom: 1.75rem; }
+
+    .svc-modal-actions { display: flex; gap: 0.85rem; }
+    .btn-cancel {
+      background: transparent; color: #888;
+      border: 1.5px solid rgba(0,0,0,0.13);
+      padding: 0.85rem 1.4rem;
+      font-family: 'Lato', sans-serif; font-size: 0.76rem;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-cancel:hover { border-color: #555; color: #333; }
+    .btn-next {
+      flex: 1; background: var(--green); color: white;
+      border: none; padding: 0.85rem 1.4rem;
+      font-family: 'Lato', sans-serif; font-size: 0.76rem;
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 18px rgba(29,91,58,0.25);
+    }
+    .btn-next:hover { background: #164a2d; transform: translateY(-2px); box-shadow: 0 8px 26px rgba(29,91,58,0.3); }
+
+    /* ── STEP 2: BOOKING FORM MODAL ── */
+    .book-modal {
+      background: var(--white);
+      width: 100%; max-width: 580px;
+      max-height: 92vh; overflow-y: auto;
+      position: relative;
+      transform: translateY(28px) scale(0.98);
+      transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
+    }
+    .modal-overlay.active .book-modal { transform: translateY(0) scale(1); }
+
+    .book-modal-head {
+      background: linear-gradient(135deg, var(--purple) 0%, #4e1a6b 100%);
+      padding: 2rem 2.25rem 1.75rem;
+      position: relative;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    /* step pills */
+    .step-track { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.9rem; }
+    .step-pip { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.28); transition: width 0.3s, background 0.3s; width: 22px; }
+    .step-pip.done { background: var(--gold); }
+    .step-pip.active { background: white; width: 38px; }
+    .step-track-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin-left: 0.2rem; }
+
+    .book-modal-head h2 { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
+    .book-modal-subtitle { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 700; }
+
+    .selected-service-chip {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 0.32rem 0.9rem;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold); font-weight: 700;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .selected-service-chip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+
+    .book-modal-body { padding: 1.75rem 2.25rem 2.25rem; }
+
+    .bf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.1rem; }
+    .bf-group { display: flex; flex-direction: column; }
+    .bf-group.span2 { grid-column: 1 / -1; }
+    .bf-group label {
+      font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #888; font-weight: 700; margin-bottom: 0.4rem; display: block;
     }
+    .bf-group input, .bf-group textarea {
+      width: 100%; padding: 0.78rem 0.95rem;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      background: var(--cream);
+      font-family: 'Lato', sans-serif; font-size: 0.91rem;
+      color: var(--dark); font-weight: 300; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .bf-group input:focus, .bf-group textarea:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(107,45,140,0.08);
+    }
+    .bf-group textarea { resize: vertical; min-height: 96px; }
+
+    .bf-actions { display: flex; gap: 0.85rem; margin-top: 1.75rem; align-items: center; }
+    .btn-back {
+      background: transparent; color: #888;
+      border: 1.5px solid rgba(0,0,0,0.13);
+      padding: 0.85rem 1.4rem;
+      font-family: 'Lato', sans-serif; font-size: 0.76rem;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--purple); color: var(--purple); }
+    .btn-book-submit {
+      flex: 1; background: var(--purple); color: white;
+      border: none; padding: 0.9rem 1.4rem;
+      font-family: 'Lato', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 18px rgba(107,45,140,0.3);
+    }
+    .btn-book-submit:hover { background: #4e1a6b; transform: translateY(-2px); box-shadow: 0 8px 26px rgba(107,45,140,0.35); }
+
+    /* ── SUCCESS STATE ── */
+    .book-success { display: none; text-align: center; padding: 3rem 2.25rem 2.5rem; }
+    .book-success.show { display: block; }
+    .success-icon-wrap { width: 70px; height: 70px; border-radius: 50%; background: var(--light-green); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.4rem; }
+    .success-icon-wrap svg { width: 30px; height: 30px; }
+    .book-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--green); margin-bottom: 0.6rem; }
+    .book-success p { font-size: 0.93rem; color: #666; line-height: 1.75; font-weight: 300; }
+    .success-svc-name { display: inline-block; margin-top: 0.85rem; padding: 0.35rem 1rem; background: var(--light-green); font-size: 0.78rem; color: var(--green); letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase; }
+    .book-success .btn-primary { margin-top: 1.75rem; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -871,8 +398,9 @@
       .showcase-grid { grid-template-columns: 1fr 1fr; }
       .reviews-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .bf-grid { grid-template-columns: 1fr; }
+      .bf-group.span2 { grid-column: 1; }
     }
-
     @media (max-width: 640px) {
       nav { padding: 0.75rem 1.25rem; }
       .nav-links { display: none; }
@@ -882,19 +410,20 @@
       section { padding: 4rem 1.25rem; }
       .form-row { grid-template-columns: 1fr; }
       .contact-form-wrap { padding: 2rem 1.5rem; }
+      .svc-modal-head, .svc-modal-body { padding-left: 1.4rem; padding-right: 1.4rem; }
+      .book-modal-head, .book-modal-body { padding-left: 1.4rem; padding-right: 1.4rem; }
+      .svc-modal-actions, .bf-actions { flex-direction: column; }
+      .btn-next, .btn-book-submit, .btn-cancel, .btn-back { width: 100%; text-align: center; }
     }
-</style>
+  </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
   <a href="#home" class="nav-logo">
-    <img src="assets/Tribe Creatives 1.png" style="border-radius: 25px;">
-    <div class="nav-brand">
-      <span class="tribe">TRIBE</span>
-      <span class="creatives">Creatives</span>
-    </div>
+    <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
+    <div class="nav-brand"><span class="tribe">TRIBE</span><span class="creatives">Creatives</span></div>
   </a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
@@ -921,13 +450,11 @@
 <!-- HERO -->
 <section id="home">
   <div class="hero-bg-ornament"></div>
-  <img src="assets/Tribe Creatives 1.png" width="250px" style="border-radius: 45px;">
+  <img src="assets/Tribe Creatives 1.png" width="250px" style="border-radius:200px;animation:fadeUp 1s ease both;">
   <p class="hero-motto">Elevating Every Cherished Milestone</p>
   <h1 class="hero-tagline">You dream it,<br/><em>we bring it to life.</em></h1>
   <div class="gold-divider">
-    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 1 L10.5 6.5 L16.5 6.5 L11.5 10 L13.5 16 L9 12.5 L4.5 16 L6.5 10 L1.5 6.5 L7.5 6.5 Z" fill="#B89958" opacity="0.7"/>
-    </svg>
+    <svg viewBox="0 0 18 18" fill="none"><path d="M9 1 L10.5 6.5 L16.5 6.5 L11.5 10 L13.5 16 L9 12.5 L4.5 16 L6.5 10 L1.5 6.5 L7.5 6.5 Z" fill="#B89958" opacity="0.7"/></svg>
   </div>
   <p class="hero-desc">At Tribe Creatives, we specialize in crafting stress-free, elegant experiences for your most cherished moments — birthdays, debuts, quinceañeras, and beyond. Let us handle the planning so you can focus on making memories.</p>
   <div class="hero-cta">
@@ -942,8 +469,7 @@
     <div class="about-grid">
       <div class="about-image-wrap reveal">
         <div class="about-img-placeholder">
-         
-           <img src="assets/Tribe Creatives 1.png" style="border-radius: 25px;">
+          <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
         </div>
         <div class="about-accent-box">
           <span class="num">100%</span>
@@ -958,41 +484,16 @@
         <p>Our team believes every celebration deserves elegance without the stress. We handle every detail — from concept to execution — so you can be fully present for the moments that matter most.</p>
         <div class="about-pillars">
           <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <div class="pillar-text">
-              <strong>Trusted Planning</strong>
-              <span>Every detail handled with professionalism and care.</span>
-            </div>
+            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="pillar-text"><strong>Trusted Planning</strong><span>Every detail handled with professionalism and care.</span></div>
           </div>
           <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
-            </div>
-            <div class="pillar-text">
-              <strong>Custom Concepts</strong>
-              <span>Tailored themes and designs unique to your vision.</span>
-            </div>
+            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="pillar-text"><strong>Custom Concepts</strong><span>Tailored themes and designs unique to your vision.</span></div>
           </div>
           <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                <line x1="9" y1="9" x2="9.01" y2="9"/>
-                <line x1="15" y1="9" x2="15.01" y2="9"/>
-              </svg>
-            </div>
-            <div class="pillar-text">
-              <strong>Joyful Experiences</strong>
-              <span>Creating memories you and your guests will cherish forever.</span>
-            </div>
+            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+            <div class="pillar-text"><strong>Joyful Experiences</strong><span>Creating memories you and your guests will cherish forever.</span></div>
           </div>
         </div>
       </div>
@@ -1006,79 +507,59 @@
     <div class="services-header reveal">
       <p class="section-label">What We Offer</p>
       <h2 class="section-title">Our <em>Services</em></h2>
-      <div class="section-divider" style="justify-content:center;">
-        <div class="section-divider-dot"></div>
-      </div>
+      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
       <p style="max-width:560px;margin:0 auto;color:#666;font-size:0.97rem;line-height:1.75;font-weight:300;">From the first concept to the final farewell, we handle every detail so your event unfolds flawlessly.</p>
     </div>
     <div class="services-grid">
+
       <div class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-        </div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
         <h3>Full Event Planning</h3>
         <p>End-to-end coordination from concept and theme development to day-of execution. We manage all logistics so you can enjoy every moment.</p>
         <span class="service-tag">Birthdays · Debuts · Quinceañeras</span>
+        <button class="btn-book-now" onclick="openSvcModal('Full Event Planning','End-to-end coordination from concept and theme development to day-of execution. We manage vendors, timelines, and all logistics so you can be fully present and enjoy every single moment of your celebration.',['Theme & concept development','Vendor sourcing & management','Full timeline creation','Day-of coordination','Budget management'])">Book Now</button>
       </div>
+
       <div class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Design & Styling</h3>
         <p>Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting that reflects your personality.</p>
         <span class="service-tag">Décor · Florals · Styling</span>
+        <button class="btn-book-now" onclick="openSvcModal('Design & Styling','Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting. Every element is thoughtfully chosen to reflect your personality and vision.',['Custom theme moodboard','Floral arrangements','Table & venue styling','Backdrop & focal point design','Color palette curation'])">Book Now</button>
       </div>
+
       <div class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>Vendor Coordination</h3>
         <p>We connect you with trusted local vendors — photographers, caterers, entertainers, and more — and manage all communications on your behalf.</p>
         <span class="service-tag">Catering · Photography · Entertainment</span>
+        <button class="btn-book-now" onclick="openSvcModal('Vendor Coordination','We connect you with our trusted network of local vendors — photographers, caterers, entertainers, and more — and handle all communications and logistics on your behalf so you never have to chase a single call or email.',['Vendor sourcing & vetting','Contract negotiation','Communication management','Day-of vendor briefing','Post-event follow-up'])">Book Now</button>
       </div>
+
       <div class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
         <h3>Debut Celebrations</h3>
         <p>A debut is a once-in-a-lifetime milestone. We craft meaningful ceremonies and receptions that celebrate the journey into womanhood with grace and joy.</p>
         <span class="service-tag">18 Roses · Cotillion · Grand Entrance</span>
+        <button class="btn-book-now" onclick="openSvcModal('Debut Celebrations','A debut is a once-in-a-lifetime milestone, and we treat it that way. We craft meaningful ceremonies and receptions that celebrate the debutante\'s journey into womanhood with elegance, grace, and unforgettable joy.',['18 Roses & 18 Candles planning','Cotillion de Honor coordination','Grand entrance choreography','Debut gown liaison','Full reception planning'])">Book Now</button>
       </div>
+
       <div class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <h3>Day-Of Coordination</h3>
         <p>Already planned your event? Let us step in on the day to ensure every timeline is followed, every vendor is in place, and every moment runs perfectly.</p>
         <span class="service-tag">Timeline · Logistics · On-Site Management</span>
+        <button class="btn-book-now" onclick="openSvcModal('Day-Of Coordination','Already planned everything? Let us step in on your big day to ensure every timeline is followed, every vendor is in place, and every moment unfolds exactly as you envisioned — without you lifting a finger.',['Pre-event timeline review','Vendor confirmation calls','On-site coordination team','Guest & flow management','Problem-solving on the spot'])">Book Now</button>
       </div>
+
       <div class="service-card reveal">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </div>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <h3>Custom Celebrations</h3>
         <p>Every milestone deserves to be celebrated. Whether it's a quinceañera, bridal shower, or milestone anniversary, we bring your unique vision to life.</p>
         <span class="service-tag">Quinceañeras · Showers · Anniversaries</span>
+        <button class="btn-book-now" onclick="openSvcModal('Custom Celebrations','Every milestone deserves to be celebrated in a way that feels uniquely yours. Whether it\'s a quinceañera, bridal shower, milestone anniversary, or any cherished occasion, we bring your vision to life with creativity and heart.',['Fully custom concept design','Theme & décor planning','Catering & entertainment curation','Invitation & stationery design','Complete event execution'])">Book Now</button>
       </div>
+
     </div>
   </div>
 </section>
@@ -1089,90 +570,16 @@
     <div class="showcase-header reveal">
       <p class="section-label" style="color:rgba(184,153,88,0.8);">Our Work</p>
       <h2 class="section-title">Event <em style="color:white;font-style:italic;">Showcase</em></h2>
-      <div class="section-divider" style="justify-content:center;">
-        <div class="section-divider-dot" style="background:var(--gold);"></div>
-      </div>
+      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot" style="background:var(--gold);"></div></div>
       <p style="max-width:520px;margin:0 auto;color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.75;font-weight:300;">A glimpse into the beautiful moments we've helped create for our incredible clients across Ontario.</p>
     </div>
     <div class="showcase-grid">
-      <div class="showcase-item reveal">
-        <div class="showcase-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="showcase-label">
-          <span>Birthday</span>
-          <p>Garden Elegance</p>
-        </div>
-      </div>
-      <div class="showcase-item reveal">
-        <div class="showcase-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="showcase-label">
-          <span>Debut</span>
-          <p>Golden Night</p>
-        </div>
-      </div>
-      <div class="showcase-item reveal">
-        <div class="showcase-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="showcase-label">
-          <span>Quinceañera</span>
-          <p>Royal Rose Affair</p>
-        </div>
-      </div>
-      <div class="showcase-item reveal">
-        <div class="showcase-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="showcase-label">
-          <span>Anniversary</span>
-          <p>Silver Celebration</p>
-        </div>
-      </div>
-      <div class="showcase-item reveal">
-        <div class="showcase-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="showcase-label">
-          <span>Birthday</span>
-          <p>Enchanted Forest</p>
-        </div>
-      </div>
-      <div class="showcase-item reveal">
-        <div class="showcase-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-        </div>
-        <div class="showcase-label">
-          <span>Bridal Shower</span>
-          <p>Botanical Luxe</p>
-        </div>
-      </div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Garden Elegance</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Debut</span><p>Golden Night</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Quinceañera</span><p>Royal Rose Affair</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Anniversary</span><p>Silver Celebration</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Enchanted Forest</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Bridal Shower</span><p>Botanical Luxe</p></div></div>
     </div>
     <p class="showcase-coming">Portfolio photos coming soon — follow us on Facebook for sneak peeks.</p>
   </div>
@@ -1184,38 +591,12 @@
     <div class="reviews-header reveal">
       <p class="section-label">Kind Words</p>
       <h2 class="section-title">Client <em>Reviews</em></h2>
-      <div class="section-divider" style="justify-content:center;">
-        <div class="section-divider-dot"></div>
-      </div>
+      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
     </div>
     <div class="reviews-grid">
-      <div class="review-card reveal">
-        <span class="review-quote">"</span>
-        <p class="review-text">Tribe Creatives made my daughter's debut an absolute dream. Every detail was perfect — from the florals to the timeline. We didn't have to worry about a single thing.</p>
-        <div class="review-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <p class="reviewer-name">Maria Santos</p>
-        <p class="reviewer-event">Debut Celebration · Ontario</p>
-      </div>
-      <div class="review-card reveal">
-        <span class="review-quote">"</span>
-        <p class="review-text">The team was professional, creative, and truly cared about making our event special. Our quinceañera was beyond anything we could have imagined. Highly recommend!</p>
-        <div class="review-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <p class="reviewer-name">Lucia Reyes</p>
-        <p class="reviewer-event">Quinceañera · Ontario</p>
-      </div>
-      <div class="review-card reveal">
-        <span class="review-quote">"</span>
-        <p class="review-text">I was amazed at how stress-free my birthday celebration was. Tribe Creatives handled everything beautifully and the décor was absolutely stunning. 10/10!</p>
-        <div class="review-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <p class="reviewer-name">Christine Dela Cruz</p>
-        <p class="reviewer-event">Birthday Celebration · Ontario</p>
-      </div>
+      <div class="review-card reveal"><span class="review-quote">"</span><p class="review-text">Tribe Creatives made my daughter's debut an absolute dream. Every detail was perfect — from the florals to the timeline. We didn't have to worry about a single thing.</p><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="reviewer-name">Maria Santos</p><p class="reviewer-event">Debut Celebration · Ontario</p></div>
+      <div class="review-card reveal"><span class="review-quote">"</span><p class="review-text">The team was professional, creative, and truly cared about making our event special. Our quinceañera was beyond anything we could have imagined. Highly recommend!</p><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="reviewer-name">Lucia Reyes</p><p class="reviewer-event">Quinceañera · Ontario</p></div>
+      <div class="review-card reveal"><span class="review-quote">"</span><p class="review-text">I was amazed at how stress-free my birthday celebration was. Tribe Creatives handled everything beautifully and the décor was absolutely stunning. 10/10!</p><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="reviewer-name">Christine Dela Cruz</p><p class="reviewer-event">Birthday Celebration · Ontario</p></div>
     </div>
   </div>
 </section>
@@ -1229,92 +610,31 @@
         <h2>Let's plan something <em>beautiful</em> together.</h2>
         <p>Ready to begin? Reach out to us and let's talk about your vision. We'd love to be part of your most cherished milestone.</p>
         <div class="contact-details">
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <div class="contact-row-text">
-              <strong>Location</strong>
-              <span>Ontario, Canada</span>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>
-              </svg>
-            </div>
-            <div class="contact-row-text">
-              <strong>Phone</strong>
-              <a href="tel:12898879791">1 289-887-9791</a>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div class="contact-row-text">
-              <strong>Email</strong>
-              <a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-              </svg>
-            </div>
-            <div class="contact-row-text">
-              <strong>Facebook</strong>
-              <a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">@tribecreativescanada</a>
-            </div>
-          </div>
+          <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="contact-row-text"><strong>Location</strong><span>Ontario, Canada</span></div></div>
+          <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg></div><div class="contact-row-text"><strong>Phone</strong><a href="tel:12898879791">1 289-887-9791</a></div></div>
+          <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="contact-row-text"><strong>Email</strong><a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a></div></div>
+          <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="contact-row-text"><strong>Facebook</strong><a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">@tribecreativescanada</a></div></div>
         </div>
       </div>
-
       <div class="contact-form-wrap reveal">
-        <h3>Send Us a Message</h3>
+        <h3>Want to have a Consultation?</h3>
         <div class="form-row">
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" placeholder="Maria" />
-          </div>
-          <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" placeholder="Santos" />
-          </div>
+          <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Maria" /></div>
+          <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Santos" /></div>
         </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="maria@email.com" />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="+1 (289) 000-0000" />
-        </div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="maria@email.com" /></div>
+        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="+1 (289) 000-0000" /></div>
         <div class="form-group">
           <label for="event-type">Event Type</label>
           <select id="event-type">
             <option value="" disabled selected>Select an event type</option>
-            <option>Birthday Celebration</option>
-            <option>Debut (18th Birthday)</option>
-            <option>Quinceañera</option>
-            <option>Bridal Shower</option>
-            <option>Anniversary</option>
-            <option>Other</option>
+            <option>Birthday Celebration</option><option>Debut (18th Birthday)</option>
+            <option>Quinceañera</option><option>Bridal Shower</option>
+            <option>Anniversary</option><option>Other</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="message">Tell Us About Your Event</label>
-          <textarea id="message" placeholder="Share your vision, preferred date, guest count, and any other details..."></textarea>
-        </div>
-        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="submitForm()">Send Message</button>
+        <div class="form-group"><label for="message">Tell Us About Your Event</label><textarea id="message" placeholder="Share your vision, preferred date, guest count, and any other details..."></textarea></div>
+        <button class="btn-primary" style="width:100%;" onclick="submitContactForm()">Send Message</button>
       </div>
     </div>
   </div>
@@ -1324,14 +644,11 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
-       <img src="assets/Tribe Creatives 1.png" style="border-radius: 25px;">
-      <div class="footer-brand">
-        <span class="tribe">TRIBE CREATIVES</span>
-        <span class="creatives">Events &amp; Management</span>
-      </div>
+      <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
+      <div class="footer-brand"><span class="tribe">TRIBE CREATIVES</span>
+        <span class="creatives">Events &amp; Management</span></div>
     </div>
     <p class="footer-motto">Elevating Every Cherished Milestone</p>
-  
     <div class="footer-divider"></div>
     <p class="footer-bottom">
       &copy; 2025 Tribe Creatives — Ontario, Canada &nbsp;·&nbsp;
@@ -1341,40 +658,189 @@
   </div>
 </footer>
 
+<!-- ═══════════════════════════════════════════
+     STEP 1 — SERVICE INFO MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="svcOverlay" role="dialog" aria-modal="true" aria-labelledby="svcTitle">
+  <div class="svc-modal">
+    <div class="svc-modal-head">
+      <span class="svc-modal-eyebrow">Selected Service</span>
+      <h2 id="svcTitle">—</h2>
+      <button class="modal-x" onclick="closeSvcModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="svc-modal-body">
+      <p class="svc-desc" id="svcDesc"></p>
+      <div class="svc-includes">
+        <span class="svc-includes-label">What's Included</span>
+        <ul id="svcList"></ul>
+      </div>
+      <p class="svc-note">&#128197; Availability varies by date. Our team will confirm within 24 hours of your request.</p>
+      <div class="svc-modal-actions">
+        <button class="btn-cancel" onclick="closeSvcModal()">Go Back</button>
+        <button class="btn-next" onclick="goToBooking()">Next — Fill In Details &rarr;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     STEP 2 — BOOKING FORM MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="bookOverlay" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+  <div class="book-modal">
+    <div class="book-modal-head">
+      <div class="step-track">
+        <div class="step-pip done"></div>
+        <div class="step-pip active"></div>
+        <span class="step-track-label">Step 2 of 2</span>
+      </div>
+      <h2 id="bookTitle">Booking Form</h2>
+      <p class="book-modal-subtitle">Client Details</p>
+      <div class="selected-service-chip" id="bookChip">—</div>
+      <button class="modal-x" onclick="closeBookModal()" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Form -->
+    <div class="book-modal-body" id="bookFormWrap">
+      <div class="bf-grid">
+        <div class="bf-group">
+          <label for="bf-fname">First Name</label>
+          <input type="text" id="bf-fname" placeholder="Maria" />
+        </div>
+        <div class="bf-group">
+          <label for="bf-lname">Last Name</label>
+          <input type="text" id="bf-lname" placeholder="Santos" />
+        </div>
+        <div class="bf-group span2">
+          <label for="bf-email">Email Address</label>
+          <input type="email" id="bf-email" placeholder="maria@email.com" />
+        </div>
+        <div class="bf-group span2">
+          <label for="bf-phone">Phone Number</label>
+          <input type="tel" id="bf-phone" placeholder="+1 (289) 000-0000" />
+        </div>
+        <div class="bf-group span2">
+          <label for="bf-date">Possible Date of Service</label>
+          <input type="date" id="bf-date" />
+        </div>
+        <div class="bf-group span2">
+          <label for="bf-notes">Notes / Additional Details</label>
+          <textarea id="bf-notes" placeholder="Share your vision, guest count, theme preferences, or anything else that will help us prepare for your event..."></textarea>
+        </div>
+      </div>
+      <div class="bf-actions">
+        <button class="btn-back" onclick="backToSvc()">&larr; Back</button>
+        <button class="btn-book-submit" onclick="submitBooking()">Book Now</button>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div class="book-success" id="bookSuccess">
+      <div class="success-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3>Booking Request Sent!</h3>
+      <p>Thank you! We've received your request for:</p>
+      <div class="success-svc-name" id="successSvcName"></div>
+      <p style="margin-top:1rem;">Our team will reach out within <strong>24 hours</strong> to confirm your appointment and discuss all the details.</p>
+      <button class="btn-primary" onclick="closeBookModal()">Back to Site</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Nav scroll
+  /* ── NAV ── */
   const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 30);
-  });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('open'));
+  function closeMobile() { document.getElementById('mobile-menu').classList.remove('open'); }
 
-  // Hamburger
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-  });
-  function closeMobile() {
-    mobileMenu.classList.remove('open');
+  /* ── REVEAL ── */
+  const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── CONTACT FORM ── */
+  function submitContactForm() {
+    if (!document.getElementById('fname').value.trim()) { alert('Please fill in your name.'); return; }
+    alert("Thank you! We'll be in touch soon to discuss your event.");
   }
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  /* ══════════════════════════════════
+     STEP 1 — SERVICE MODAL
+  ══════════════════════════════════ */
+  let activeService = '';
 
-  // Form submit
-  function submitForm() {
-    const name = document.getElementById('fname').value;
-    if (!name) { alert('Please fill in your name.'); return; }
-    alert('Thank you! We\'ll be in touch soon to discuss your event.');
+  function openSvcModal(title, desc, includes) {
+    activeService = title;
+    document.getElementById('svcTitle').textContent = title;
+    document.getElementById('svcDesc').textContent = desc;
+    document.getElementById('svcList').innerHTML = includes.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('svcOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeSvcModal() {
+    document.getElementById('svcOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('svcOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeSvcModal();
+  });
+
+  /* ══════════════════════════════════
+     STEP 2 — BOOKING MODAL
+  ══════════════════════════════════ */
+  function goToBooking() {
+    closeSvcModal();
+    setTimeout(() => {
+      document.getElementById('bookChip').textContent = activeService;
+      document.getElementById('bookFormWrap').style.display = 'block';
+      document.getElementById('bookSuccess').classList.remove('show');
+      ['bf-fname','bf-lname','bf-email','bf-phone','bf-date','bf-notes'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('bookOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }, 220);
+  }
+
+  function closeBookModal() {
+    document.getElementById('bookOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function backToSvc() {
+    closeBookModal();
+    setTimeout(() => {
+      document.getElementById('svcOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }, 220);
+  }
+
+  document.getElementById('bookOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeBookModal();
+  });
+
+  function submitBooking() {
+    const fname = document.getElementById('bf-fname').value.trim();
+    const lname = document.getElementById('bf-lname').value.trim();
+    const email = document.getElementById('bf-email').value.trim();
+    const phone = document.getElementById('bf-phone').value.trim();
+    const date  = document.getElementById('bf-date').value;
+
+    if (!fname || !lname) { alert('Please enter your full name.'); return; }
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    if (!phone) { alert('Please enter your phone number.'); return; }
+    if (!date)  { alert('Please select a possible date for your event.'); return; }
+
+    document.getElementById('bookFormWrap').style.display = 'none';
+    document.getElementById('successSvcName').textContent = activeService;
+    document.getElementById('bookSuccess').classList.add('show');
+  }
+
+  /* ── ESC to close ── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeSvcModal(); closeBookModal(); }
+  });
 </script>
 </body>
 </html>
