@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tribe Creatives — Events & Management</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-
+  <link rel="icon" type="image/x-icon" href="assets/TC-ICON.png">  
   <style>
     :root {
       --green: #1D5B3A;
@@ -49,24 +49,104 @@
     .mobile-menu a:hover { color: var(--green); }
 
     /* ── HERO ── */
-    #home { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 4rem; background: radial-gradient(ellipse at 20% 50%, rgba(29,91,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(107,45,140,0.06) 0%, transparent 60%), var(--cream); position: relative; overflow: hidden; }
-    .hero-bg-ornament { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; border-radius: 50%; border: 3px solid rgba(184,153,88,0.1); pointer-events: none; }
-    .hero-bg-ornament::before { content: ''; position: absolute; inset: 40px; border-radius: 50%; border: 3px solid rgba(184,153,88,0.1); }
-    .hero-tagline { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; color: var(--green); line-height: 1.2; max-width: 700px; animation: fadeUp 1s 0.2s ease both; margin-bottom: 0.75rem; }
-    .hero-tagline em { font-style: italic; color: var(--purple); }
-    .hero-motto { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 700; animation: fadeUp 1s 0.35s ease both; margin-bottom: 1.5rem; margin-top: 1.5rem; }
-    .gold-divider { display: flex; align-items: center; gap: 1rem; justify-content: center; animation: fadeUp 1s 0.45s ease both; margin-bottom: 2rem; }
-    .gold-divider::before, .gold-divider::after { content: ''; width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
-    .gold-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    #home {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 7rem 2rem 4rem;
+      position: relative; overflow: hidden;
+      background-color: var(--dark);
+    }
+    /* SVG pattern overlay */
+    .hero-pattern {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(29,91,58,0.55) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(107,45,140,0.45) 0%, transparent 50%),
+        radial-gradient(circle at 55% 80%, rgba(184,153,88,0.18) 0%, transparent 40%);
+    }
+    /* Decorative SVG florets / bokeh */
+    .hero-bokeh {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-bokeh::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600'%3E%3Ccircle cx='120' cy='80' r='60' fill='rgba(184,153,88,0.06)'/%3E%3Ccircle cx='780' cy='120' r='90' fill='rgba(107,45,140,0.07)'/%3E%3Ccircle cx='450' cy='500' r='120' fill='rgba(29,91,58,0.07)'/%3E%3Ccircle cx='200' cy='400' r='50' fill='rgba(184,153,88,0.05)'/%3E%3Ccircle cx='700' cy='440' r='70' fill='rgba(107,45,140,0.05)'/%3E%3Cpath d='M50 300 Q150 200 250 300 Q350 400 450 300' stroke='rgba(184,153,88,0.08)' stroke-width='1.5' fill='none'/%3E%3Cpath d='M650 150 Q750 250 850 150' stroke='rgba(107,45,140,0.07)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-size: cover; background-position: center;
+    }
+    /* Elegant mesh grid */
+    .hero-mesh {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(184,153,88,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,153,88,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    /* Ornament rings */
+    .hero-ring {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 640px; height: 640px; border-radius: 50%;
+      border: 1px solid rgba(184,153,88,0.08); pointer-events: none; z-index: 0;
+    }
+    .hero-ring::before {
+      content: ''; position: absolute; inset: 60px; border-radius: 50%;
+      border: 1px solid rgba(184,153,88,0.06);
+    }
+    .hero-ring::after {
+      content: ''; position: absolute; inset: -80px; border-radius: 50%;
+      border: 1px solid rgba(184,153,88,0.05);
+    }
+    /* Dark overlay for text readability */
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(20,20,20,0.25) 0%, rgba(20,20,20,0.1) 50%, rgba(20,20,20,0.4) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; }
+    /* Floating decorative label */
+    .hero-event-label {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 2rem;
+      animation: fadeUp 1s 0.15s ease both;
+    }
+    .hero-event-label::before, .hero-event-label::after {
+      content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.7;
+    }
+    .hero-event-label span {
+      font-size: 0.68rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700;
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 600; color: var(--white); line-height: 1.15;
+      max-width: 780px; animation: fadeUp 1s 0.3s ease both; margin-bottom: 0.75rem;
+    }
+    .hero-tagline em { font-style: italic; color: var(--gold); }
+    .gold-divider {
+      display: flex; align-items: center; gap: 1rem; justify-content: center;
+      animation: fadeUp 1s 0.45s ease both; margin: 1.5rem 0;
+    }
+    .gold-divider::before, .gold-divider::after {
+      content: ''; width: 80px; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,153,88,0.6));
+    }
+    .gold-divider::after { background: linear-gradient(to left, transparent, rgba(184,153,88,0.6)); }
     .gold-divider svg { width: 18px; height: 18px; }
-    .hero-desc { font-size: clamp(0.95rem, 2vw, 1.1rem); color: #444; max-width: 600px; line-height: 1.8; font-weight: 300; animation: fadeUp 1s 0.5s ease both; margin-bottom: 2.5rem; }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 1s 0.6s ease both; }
+    .hero-desc {
+      font-size: clamp(0.95rem, 2vw, 1.1rem); color: rgba(255,255,255,0.75);
+      max-width: 600px; line-height: 1.85; font-weight: 300;
+      animation: fadeUp 1s 0.55s ease both; margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 1s 0.65s ease both;
+    }
 
     /* ── BUTTONS ── */
-    .btn-primary { background: var(--green); color: white; padding: 0.85rem 2.25rem; border: none; font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 4px 20px rgba(29,91,58,0.25); display: inline-block; }
-    .btn-primary:hover { background: #164a2d; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(29,91,58,0.3); }
-    .btn-outline { background: transparent; color: var(--gold); padding: 0.85rem 2.25rem; border: 1.5px solid var(--gold); font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.25s; display: inline-block; }
-    .btn-outline:hover { background: var(--purple); color: white; transform: translateY(-2px); }
+    .btn-primary { background: var(--green); color: white; padding: 0.85rem 2.25rem; border: none; font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 4px 20px rgba(29,91,58,0.3); display: inline-block; }
+    .btn-primary:hover { background: #164a2d; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(29,91,58,0.35); }
+    .btn-outline { background: transparent; color: var(--gold); padding: 0.85rem 2.25rem; border: 1.5px solid rgba(184,153,88,0.7); font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.25s; display: inline-block; }
+    .btn-outline:hover { background: var(--purple); color: white; border-color: var(--purple); transform: translateY(-2px); }
 
     /* ── SECTIONS ── */
     section { padding: 6rem 2rem; }
@@ -78,7 +158,229 @@
     .section-divider::after { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
     .section-divider-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
 
-    /* ── ABOUT ── */
+    /* ── SERVICES ── */
+    #services { background: var(--cream); }
+    .services-header { text-align: center; margin-bottom: 4rem; }
+    .services-header .section-divider { justify-content: center; }
+    .services-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, var(--gold), transparent); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    /* Service card with background image */
+    .service-card {
+      position: relative; overflow: hidden;
+      border: 1px solid rgba(184,153,88,0.15);
+      min-height: 420px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.25); }
+
+    /* BG image layer via SVG illustration */
+    .svc-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover .svc-bg { transform: scale(1.05); }
+
+    /* Overlay gradient */
+    .svc-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(20,20,20,0.88) 0%, rgba(20,20,20,0.45) 55%, rgba(20,20,20,0.1) 100%);
+      transition: background 0.35s;
+    }
+    .service-card:hover .svc-overlay {
+      background: linear-gradient(to top, rgba(20,20,20,0.92) 0%, rgba(20,20,20,0.55) 60%, rgba(20,20,20,0.15) 100%);
+    }
+
+    /* Top accent bar */
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--green), var(--purple));
+      z-index: 3; transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .svc-content {
+      position: relative; z-index: 2;
+      padding: 1.75rem 1.75rem 0;
+      display: flex; flex-direction: column;
+    }
+
+    /* Price badge */
+    .svc-price-badge {
+      position: absolute; top: 1.1rem; right: 1.1rem; z-index: 4;
+      background: rgba(184,153,88,0.92);
+      backdrop-filter: blur(4px);
+      color: white;
+      padding: 0.32rem 0.85rem;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+    }
+
+    .svc-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem; backdrop-filter: blur(4px);
+    }
+    .svc-icon svg { width: 22px; height: 22px; }
+
+    .svc-content h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      font-weight: 600; color: white; margin-bottom: 0.55rem;
+    }
+    .svc-content > p {
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+      line-height: 1.65; font-weight: 300; margin-bottom: 0.85rem;
+    }
+    .service-tag {
+      font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700;
+      border-top: 1px solid rgba(184,153,88,0.3); padding-top: 0.65rem;
+      margin-bottom: 0.85rem; display: block;
+    }
+
+    /* Price line below tag */
+    .svc-price-line {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .svc-price-line .price-from {
+      font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); font-weight: 700;
+    }
+    .svc-price-line .price-amount {
+      font-family: 'Playfair Display', serif; font-size: 1.35rem;
+      font-weight: 700; color: var(--gold);
+    }
+    .svc-price-line .price-unit {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45); font-weight: 300;
+    }
+
+    /* Book now button on card */
+    .btn-book-now {
+      display: block; width: 100%;
+      padding: 0.7rem 1rem;
+      background: transparent; color: white;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      font-family: 'Lato', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+      text-align: center; cursor: pointer;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+      margin-bottom: 1.75rem;
+    }
+    .btn-book-now:hover {
+      background: var(--green); border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    /* Individual card BGs — using Unsplash source + color fallbacks */
+    .svc-bg-planning {
+      background-color: #1a2e20;
+      background-image: url('../assets/fullevent-planning.jpg');
+    }
+    .svc-bg-design {
+      background-color: #251828;
+      background-image: url('../assets/designandstyling.jpg');
+    }
+    .svc-bg-vendor {
+      background-color: #1a2030;
+      background-image: url('../assets/vendorcoordination.jpg');
+    }
+    .svc-bg-debut {
+      background-color: #1e1525;
+      background-image: url('../assets/debutcelebration.jpg');
+    }
+    .svc-bg-dayof {
+      background-color: #0f1e16;
+      background-image: url('../assets/day-off coordination.jpg');
+    }
+    .svc-bg-custom {
+      background-color: #1d1520;
+      background-image: url('../assets/custom-celebration.jpg');
+    }
+
+    /* ── PORTFOLIO (was SHOWCASE) ── */
+    #portfolio { background: var(--green); color: white; }
+    #portfolio .section-title { color: var(--gold); }
+    #portfolio .section-label { color: rgba(184,153,88,0.8); }
+    .showcase-header { text-align: center; margin-bottom: 3.5rem; }
+    .showcase-header .section-divider { justify-content: center; }
+    .showcase-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, rgba(184,153,88,0.5), transparent); }
+    .showcase-header .section-divider::after { background: linear-gradient(to right, rgba(184,153,88,0.5), transparent); }
+    .showcase-header .section-divider-dot { background: var(--gold); }
+    .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .showcase-item { aspect-ratio: 4/5; background: rgba(255,255,255,0.08); border: 1px solid rgba(184,153,88,0.2); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.3s; }
+    .showcase-item:hover { border-color: rgba(184,153,88,0.6); }
+    .showcase-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.15; }
+    .showcase-placeholder svg { width: 60px; height: 60px; }
+    .showcase-label { position: relative; z-index: 1; text-align: center; }
+    .showcase-label span { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; }
+    .showcase-label p { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; margin-top: 0.25rem; }
+    .showcase-coming { text-align: center; margin-top: 3rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.1em; }
+
+    /* ── TESTIMONIALS CAROUSEL (was REVIEWS) ── */
+    #testimonials { background: var(--white); overflow: hidden; }
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+    .carousel-wrap { position: relative; max-width: 860px; margin: 0 auto; }
+
+    .carousel-track-outer { overflow: hidden; position: relative; }
+    .carousel-track {
+      display: flex; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1);
+      will-change: transform;
+    }
+    .carousel-slide {
+      flex: 0 0 100%; padding: 0 1rem;
+    }
+
+    /* Large featured card */
+    .review-card-featured {
+      background: var(--cream);
+      border: 1px solid rgba(184,153,88,0.15);
+      padding: 3rem 3.5rem;
+      position: relative;
+      text-align: center;
+    }
+    .review-card-featured::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif; font-size: 7rem;
+      color: rgba(184,153,88,0.12); line-height: 0.6;
+      position: absolute; top: 2rem; left: 2rem;
+    }
+    .review-text-featured {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: #444; line-height: 1.85; font-style: italic;
+      margin-bottom: 2rem; position: relative; z-index: 1;
+    }
+    .review-stars-featured { display: flex; gap: 4px; justify-content: center; margin-bottom: 1.25rem; }
+    .star { color: var(--gold); font-size: 0.9rem; }
+    .reviewer-name-featured { font-size: 1rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
+    .reviewer-event-featured { font-size: 0.78rem; color: var(--berry); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
+
+    /* Carousel controls */
+    .carousel-controls {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .carousel-btn {
+      width: 44px; height: 44px;
+      background: transparent; border: 1.5px solid rgba(184,153,88,0.4);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s; color: var(--gold);
+    }
+    .carousel-btn:hover { background: var(--green); border-color: var(--green); color: white; }
+    .carousel-btn svg { width: 18px; height: 18px; }
+    .carousel-dots { display: flex; gap: 0.55rem; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(184,153,88,0.25); border: none; cursor: pointer;
+      transition: background 0.25s, transform 0.25s; padding: 0;
+    }
+    .carousel-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ── ABOUT US ── */
     #about { background: var(--white); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .about-image-wrap { position: relative; }
@@ -95,79 +397,6 @@
     .pillar-icon svg { width: 16px; height: 16px; }
     .pillar-text strong { display: block; font-size: 0.85rem; font-weight: 700; color: var(--green); letter-spacing: 0.05em; margin-bottom: 0.2rem; }
     .pillar-text span { font-size: 0.9rem; color: #666; font-weight: 300; }
-
-    /* ── SERVICES ── */
-    #services { background: var(--cream); }
-    .services-header { text-align: center; margin-bottom: 4rem; }
-    .services-header .section-divider { justify-content: center; }
-    .services-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, var(--gold), transparent); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .service-card { background: var(--white); border: 1px solid rgba(184,153,88,0.15); padding: 2.5rem 2rem; position: relative; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; display: flex; flex-direction: column; }
-    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--green), var(--purple)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(29,91,58,0.1); }
-    .service-card:hover::before { transform: scaleX(1); }
-    .service-icon { width: 56px; height: 56px; background: var(--light-green); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; transition: background 0.3s; }
-    .service-card:hover .service-icon { background: var(--green); }
-    .service-card:hover .service-icon svg path,
-    .service-card:hover .service-icon svg circle,
-    .service-card:hover .service-icon svg rect,
-    .service-card:hover .service-icon svg polygon,
-    .service-card:hover .service-icon svg polyline,
-    .service-card:hover .service-icon svg line { stroke: white !important; }
-    .service-icon svg { width: 24px; height: 24px; }
-    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--green); margin-bottom: 0.75rem; }
-    .service-card > p { font-size: 0.92rem; color: #666; line-height: 1.7; font-weight: 300; flex: 1; }
-    .service-tag { display: block; margin-top: 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; border-top: 1px solid rgba(184,153,88,0.3); padding-top: 0.75rem; }
-
-    /* ── BOOK NOW BUTTON ── */
-    .btn-book-now {
-      display: block; width: 100%; margin-top: 1rem;
-      padding: 0.75rem 1rem;
-      background: transparent;
-      color: var(--green);
-      border: 1.5px solid var(--green);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.76rem; letter-spacing: 0.22em;
-      text-transform: uppercase; font-weight: 700;
-      text-align: center; cursor: pointer;
-      transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
-    }
-    .btn-book-now:hover {
-      background: var(--green); color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(29,91,58,0.28);
-    }
-
-    /* ── SHOWCASE ── */
-    #showcase { background: var(--green); color: white; }
-    #showcase .section-title { color: var(--gold); }
-    #showcase .section-label { color: rgba(184,153,88,0.8); }
-    .showcase-header { text-align: center; margin-bottom: 3.5rem; }
-    .showcase-header .section-divider { justify-content: center; }
-    .showcase-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, rgba(184,153,88,0.5), transparent); }
-    .showcase-header .section-divider::after { background: linear-gradient(to right, rgba(184,153,88,0.5), transparent); }
-    .showcase-header .section-divider-dot { background: var(--gold); }
-    .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .showcase-item { aspect-ratio: 4/5; background: rgba(255,255,255,0.08); border: 1px solid rgba(184,153,88,0.2); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.3s; }
-    .showcase-item:hover { border-color: rgba(184,153,88,0.6); }
-    .showcase-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.15; }
-    .showcase-placeholder svg { width: 60px; height: 60px; }
-    .showcase-label { position: relative; z-index: 1; text-align: center; }
-    .showcase-label span { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; }
-    .showcase-label p { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; margin-top: 0.25rem; }
-    .showcase-coming { text-align: center; margin-top: 3rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.1em; }
-
-    /* ── REVIEWS ── */
-    #reviews { background: var(--white); }
-    .reviews-header { text-align: center; margin-bottom: 3.5rem; }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .review-card { border: 1px solid rgba(184,153,88,0.15); padding: 2.25rem 2rem; position: relative; background: var(--cream); }
-    .review-quote { font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(184,153,88,0.15); line-height: 0.5; margin-bottom: 1.25rem; display: block; }
-    .review-text { font-size: 0.95rem; color: #555; line-height: 1.75; font-weight: 300; font-style: italic; margin-bottom: 1.5rem; }
-    .review-stars { display: flex; gap: 3px; margin-bottom: 1rem; }
-    .star { color: var(--gold); font-size: 0.85rem; }
-    .reviewer-name { font-size: 0.85rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
-    .reviewer-event { font-size: 0.78rem; color: var(--berry); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
 
     /* ── CONTACT ── */
     #contact { background: linear-gradient(135deg, var(--light-green) 0%, rgba(107,45,140,0.04) 100%); }
@@ -246,6 +475,25 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem; font-weight: 600; color: white; line-height: 1.25;
     }
+    /* Price inside modal header */
+    .svc-modal-price {
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      margin-top: 0.85rem;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(184,153,88,0.35);
+      padding: 0.4rem 1rem;
+    }
+    .svc-modal-price .mprice-from {
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); font-weight: 700;
+    }
+    .svc-modal-price .mprice-amount {
+      font-family: 'Playfair Display', serif; font-size: 1.55rem;
+      font-weight: 700; color: var(--gold);
+    }
+    .svc-modal-price .mprice-unit {
+      font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 300;
+    }
+
     .modal-x {
       position: absolute; top: 1.1rem; right: 1.1rem;
       width: 34px; height: 34px; border: none; cursor: pointer;
@@ -314,17 +562,13 @@
       padding: 2rem 2.25rem 1.75rem;
       position: relative;
     }
-
-    /* step pills */
     .step-track { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.9rem; }
     .step-pip { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.28); transition: width 0.3s, background 0.3s; width: 22px; }
     .step-pip.done { background: var(--gold); }
     .step-pip.active { background: white; width: 38px; }
     .step-track-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin-left: 0.2rem; }
-
     .book-modal-head h2 { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
     .book-modal-subtitle { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 700; }
-
     .selected-service-chip {
       display: inline-flex; align-items: center; gap: 0.45rem;
       margin-top: 1rem;
@@ -337,47 +581,17 @@
     .selected-service-chip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
 
     .book-modal-body { padding: 1.75rem 2.25rem 2.25rem; }
-
     .bf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.1rem; }
     .bf-group { display: flex; flex-direction: column; }
     .bf-group.span2 { grid-column: 1 / -1; }
-    .bf-group label {
-      font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: #888; font-weight: 700; margin-bottom: 0.4rem; display: block;
-    }
-    .bf-group input, .bf-group textarea {
-      width: 100%; padding: 0.78rem 0.95rem;
-      border: 1.5px solid rgba(0,0,0,0.1);
-      background: var(--cream);
-      font-family: 'Lato', sans-serif; font-size: 0.91rem;
-      color: var(--dark); font-weight: 300; outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .bf-group input:focus, .bf-group textarea:focus {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 3px rgba(107,45,140,0.08);
-    }
+    .bf-group label { font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase; color: #888; font-weight: 700; margin-bottom: 0.4rem; display: block; }
+    .bf-group input, .bf-group textarea { width: 100%; padding: 0.78rem 0.95rem; border: 1.5px solid rgba(0,0,0,0.1); background: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.91rem; color: var(--dark); font-weight: 300; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .bf-group input:focus, .bf-group textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(107,45,140,0.08); }
     .bf-group textarea { resize: vertical; min-height: 96px; }
-
     .bf-actions { display: flex; gap: 0.85rem; margin-top: 1.75rem; align-items: center; }
-    .btn-back {
-      background: transparent; color: #888;
-      border: 1.5px solid rgba(0,0,0,0.13);
-      padding: 0.85rem 1.4rem;
-      font-family: 'Lato', sans-serif; font-size: 0.76rem;
-      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
-      cursor: pointer; transition: all 0.2s;
-    }
+    .btn-back { background: transparent; color: #888; border: 1.5px solid rgba(0,0,0,0.13); padding: 0.85rem 1.4rem; font-family: 'Lato', sans-serif; font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: all 0.2s; }
     .btn-back:hover { border-color: var(--purple); color: var(--purple); }
-    .btn-book-submit {
-      flex: 1; background: var(--purple); color: white;
-      border: none; padding: 0.9rem 1.4rem;
-      font-family: 'Lato', sans-serif; font-size: 0.78rem;
-      letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 18px rgba(107,45,140,0.3);
-    }
+    .btn-book-submit { flex: 1; background: var(--purple); color: white; border: none; padding: 0.9rem 1.4rem; font-family: 'Lato', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 4px 18px rgba(107,45,140,0.3); }
     .btn-book-submit:hover { background: #4e1a6b; transform: translateY(-2px); box-shadow: 0 8px 26px rgba(107,45,140,0.35); }
 
     /* ── SUCCESS STATE ── */
@@ -396,7 +610,6 @@
       .about-image-wrap { max-width: 400px; margin: 0 auto; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .showcase-grid { grid-template-columns: 1fr 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .bf-grid { grid-template-columns: 1fr; }
       .bf-group.span2 { grid-column: 1; }
@@ -414,12 +627,13 @@
       .book-modal-head, .book-modal-body { padding-left: 1.4rem; padding-right: 1.4rem; }
       .svc-modal-actions, .bf-actions { flex-direction: column; }
       .btn-next, .btn-book-submit, .btn-cancel, .btn-back { width: 100%; text-align: center; }
+      .review-card-featured { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAV — updated order & labels -->
 <nav id="main-nav">
   <a href="#home" class="nav-logo">
     <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
@@ -427,10 +641,10 @@
   </a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#showcase">Showcase</a></li>
-    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#about">About Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -440,30 +654,260 @@
 
 <div class="mobile-menu" id="mobile-menu">
   <a href="#home" onclick="closeMobile()">Home</a>
-  <a href="#about" onclick="closeMobile()">About</a>
   <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="#showcase" onclick="closeMobile()">Showcase</a>
-  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+  <a href="#testimonials" onclick="closeMobile()">Testimonials</a>
+  <a href="#about" onclick="closeMobile()">About Us</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO — redesigned with rich event-management background -->
 <section id="home">
-  <div class="hero-bg-ornament"></div>
-  <img src="assets/Tribe Creatives 1.png" width="250px" style="border-radius:200px;animation:fadeUp 1s ease both;">
-  <p class="hero-motto">Elevating Every Cherished Milestone</p>
-  <h1 class="hero-tagline">You dream it,<br/><em>we bring it to life.</em></h1>
-  <div class="gold-divider">
-    <svg viewBox="0 0 18 18" fill="none"><path d="M9 1 L10.5 6.5 L16.5 6.5 L11.5 10 L13.5 16 L9 12.5 L4.5 16 L6.5 10 L1.5 6.5 L7.5 6.5 Z" fill="#B89958" opacity="0.7"/></svg>
-  </div>
-  <p class="hero-desc">At Tribe Creatives, we specialize in crafting stress-free, elegant experiences for your most cherished moments — birthdays, debuts, quinceañeras, and beyond. Let us handle the planning so you can focus on making memories.</p>
-  <div class="hero-cta">
-    <a href="#services" class="btn-primary">Explore Services</a>
-    <a href="#contact" class="btn-outline">Book a Consultation</a>
+  <div class="hero-pattern"></div>
+  <div class="hero-bokeh"></div>
+  <div class="hero-mesh"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-event-label">
+      <span>Events &amp; Management · Ontario, Canada</span>
+    </div>
+    <h1 class="hero-tagline">You dream it,<br/><em>we bring it to life.</em></h1>
+    <div class="gold-divider">
+      <svg viewBox="0 0 18 18" fill="none"><path d="M9 1 L10.5 6.5 L16.5 6.5 L11.5 10 L13.5 16 L9 12.5 L4.5 16 L6.5 10 L1.5 6.5 L7.5 6.5 Z" fill="#B89958" opacity="0.7"/></svg>
+    </div>
+    <p class="hero-desc">At Tribe Creatives, we specialize in crafting stress-free, elegant experiences for your most cherished moments — birthdays, debuts, quinceañeras, and beyond. Let us handle the planning so you can focus on making memories.</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Book a Consultation</a>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-header reveal">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Our <em>Services</em></h2>
+      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
+      <p style="max-width:560px;margin:0 auto;color:#666;font-size:0.97rem;line-height:1.75;font-weight:300;">From the first concept to the final farewell, we handle every detail so your event unfolds flawlessly.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- 1 — Full Event Planning -->
+      <div class="service-card reveal">
+        <div class="svc-bg svc-bg-planning"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-price-badge">From $1,200</div>
+        <div class="svc-content">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Full Event Planning</h3>
+          <p>End-to-end coordination from concept and theme development to day-of execution. We manage all logistics so you can enjoy every moment.</p>
+          <span class="service-tag">Birthdays · Debuts · Quinceañeras</span>
+          <div class="svc-price-line">
+            <span class="price-from">Starting at</span>
+            <span class="price-amount">$1,200</span>
+            <span class="price-unit">/ event</span>
+          </div>
+          <button class="btn-book-now" onclick="openSvcModal('Full Event Planning','End-to-end coordination from concept and theme development to day-of execution. We manage vendors, timelines, and all logistics so you can be fully present and enjoy every single moment of your celebration.','$1,200',['Theme & concept development','Vendor sourcing & management','Full timeline creation','Day-of coordination','Budget management'])">Book Now</button>
+        </div>
+      </div>
+
+      <!-- 2 — Design & Styling -->
+      <div class="service-card reveal">
+        <div class="svc-bg svc-bg-design"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-price-badge">From $650</div>
+        <div class="svc-content">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Design &amp; Styling</h3>
+          <p>Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting that reflects your personality.</p>
+          <span class="service-tag">Décor · Florals · Styling</span>
+          <div class="svc-price-line">
+            <span class="price-from">Starting at</span>
+            <span class="price-amount">$650</span>
+            <span class="price-unit">/ event</span>
+          </div>
+          <button class="btn-book-now" onclick="openSvcModal('Design & Styling','Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting. Every element is thoughtfully chosen to reflect your personality and vision.','$650',['Custom theme moodboard','Floral arrangements','Table & venue styling','Backdrop & focal point design','Color palette curation'])">Book Now</button>
+        </div>
+      </div>
+
+      <!-- 3 — Vendor Coordination -->
+      <div class="service-card reveal">
+        <div class="svc-bg svc-bg-vendor"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-price-badge">From $450</div>
+        <div class="svc-content">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Vendor Coordination</h3>
+          <p>We connect you with trusted local vendors — photographers, caterers, entertainers, and more — and manage all communications on your behalf.</p>
+          <span class="service-tag">Catering · Photography · Entertainment</span>
+          <div class="svc-price-line">
+            <span class="price-from">Starting at</span>
+            <span class="price-amount">$450</span>
+            <span class="price-unit">/ event</span>
+          </div>
+          <button class="btn-book-now" onclick="openSvcModal('Vendor Coordination','We connect you with our trusted network of local vendors — photographers, caterers, entertainers, and more — and handle all communications and logistics on your behalf so you never have to chase a single call or email.','$450',['Vendor sourcing & vetting','Contract negotiation','Communication management','Day-of vendor briefing','Post-event follow-up'])">Book Now</button>
+        </div>
+      </div>
+
+      <!-- 4 — Debut Celebrations -->
+      <div class="service-card reveal">
+        <div class="svc-bg svc-bg-debut"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-price-badge">From $1,500</div>
+        <div class="svc-content">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Debut Celebrations</h3>
+          <p>A debut is a once-in-a-lifetime milestone. We craft meaningful ceremonies and receptions that celebrate the journey into womanhood with grace and joy.</p>
+          <span class="service-tag">18 Roses · Cotillion · Grand Entrance</span>
+          <div class="svc-price-line">
+            <span class="price-from">Starting at</span>
+            <span class="price-amount">$1,500</span>
+            <span class="price-unit">/ event</span>
+          </div>
+          <button class="btn-book-now" onclick="openSvcModal('Debut Celebrations','A debut is a once-in-a-lifetime milestone, and we treat it that way. We craft meaningful ceremonies and receptions that celebrate the debutante\'s journey into womanhood with elegance, grace, and unforgettable joy.','$1,500',['18 Roses & 18 Candles planning','Cotillion de Honor coordination','Grand entrance choreography','Debut gown liaison','Full reception planning'])">Book Now</button>
+        </div>
+      </div>
+
+      <!-- 5 — Day-Of Coordination -->
+      <div class="service-card reveal">
+        <div class="svc-bg svc-bg-dayof"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-price-badge">From $380</div>
+        <div class="svc-content">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Day-Of Coordination</h3>
+          <p>Already planned your event? Let us step in on the day to ensure every timeline is followed, every vendor is in place, and every moment runs perfectly.</p>
+          <span class="service-tag">Timeline · Logistics · On-Site Management</span>
+          <div class="svc-price-line">
+            <span class="price-from">Starting at</span>
+            <span class="price-amount">$380</span>
+            <span class="price-unit">/ event</span>
+          </div>
+          <button class="btn-book-now" onclick="openSvcModal('Day-Of Coordination','Already planned everything? Let us step in on your big day to ensure every timeline is followed, every vendor is in place, and every moment unfolds exactly as you envisioned — without you lifting a finger.','$380',['Pre-event timeline review','Vendor confirmation calls','On-site coordination team','Guest & flow management','Problem-solving on the spot'])">Book Now</button>
+        </div>
+      </div>
+
+      <!-- 6 — Custom Celebrations -->
+      <div class="service-card reveal">
+        <div class="svc-bg svc-bg-custom"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-price-badge">Custom Quote</div>
+        <div class="svc-content">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Custom Celebrations</h3>
+          <p>Every milestone deserves to be celebrated. Whether it's a quinceañera, bridal shower, or milestone anniversary, we bring your unique vision to life.</p>
+          <span class="service-tag">Quinceañeras · Showers · Anniversaries</span>
+          <div class="svc-price-line">
+            <span class="price-from">Pricing</span>
+            <span class="price-amount" style="font-size:1.05rem;letter-spacing:0.02em;">Custom</span>
+            <span class="price-unit">· inquire below</span>
+          </div>
+          <button class="btn-book-now" onclick="openSvcModal('Custom Celebrations','Every milestone deserves to be celebrated in a way that feels uniquely yours. Whether it\'s a quinceañera, bridal shower, milestone anniversary, or any cherished occasion, we bring your vision to life with creativity and heart.','Custom Quote',['Fully custom concept design','Theme & décor planning','Catering & entertainment curation','Invitation & stationery design','Complete event execution'])">Book Now</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO (was Showcase) -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="showcase-header reveal">
+      <p class="section-label" style="color:rgba(184,153,88,0.8);">Our Work</p>
+      <h2 class="section-title">Event <em style="color:white;font-style:italic;">Portfolio</em></h2>
+      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot" style="background:var(--gold);"></div></div>
+      <p style="max-width:520px;margin:0 auto;color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.75;font-weight:300;">A glimpse into the beautiful moments we've helped create for our incredible clients across Ontario.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Garden Elegance</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Debut</span><p>Golden Night</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Quinceañera</span><p>Royal Rose Affair</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Anniversary</span><p>Silver Celebration</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Enchanted Forest</p></div></div>
+      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Bridal Shower</span><p>Botanical Luxe</p></div></div>
+    </div>
+    <p class="showcase-coming">Portfolio photos coming soon — follow us on Facebook for sneak peeks.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (was Reviews) — carousel -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="testimonials-header reveal">
+      <p class="section-label">Kind Words</p>
+      <h2 class="section-title">Client <em>Testimonials</em></h2>
+      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
+    </div>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- Slide 1 -->
+          <div class="carousel-slide">
+            <div class="review-card-featured">
+              <p class="review-text-featured">"Tribe Creatives made my daughter's debut an absolute dream. Every detail was perfect — from the florals to the timeline. We didn't have to worry about a single thing."</p>
+              <div class="review-stars-featured"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+              <p class="reviewer-name-featured">Maria Santos</p>
+              <p class="reviewer-event-featured">Debut Celebration · Ontario</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-slide">
+            <div class="review-card-featured">
+              <p class="review-text-featured">"The team was professional, creative, and truly cared about making our event special. Our quinceañera was beyond anything we could have imagined. Highly recommend!"</p>
+              <div class="review-stars-featured"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+              <p class="reviewer-name-featured">Lucia Reyes</p>
+              <p class="reviewer-event-featured">Quinceañera · Ontario</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-slide">
+            <div class="review-card-featured">
+              <p class="review-text-featured">"I was amazed at how stress-free my birthday celebration was. Tribe Creatives handled everything beautifully and the décor was absolutely stunning. 10/10!"</p>
+              <div class="review-stars-featured"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+              <p class="reviewer-name-featured">Christine Dela Cruz</p>
+              <p class="reviewer-event-featured">Birthday Celebration · Ontario</p>
+            </div>
+          </div>
+
+        </div><!-- /track -->
+      </div>
+
+      <!-- Controls -->
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US (was About) -->
 <section id="about">
   <div class="section-inner">
     <div class="about-grid">
@@ -478,7 +922,7 @@
       </div>
       <div class="about-text reveal">
         <p class="section-label">Our Story</p>
-        <h2 class="section-title">We are <em>Tribe Creatives</em></h2>
+        <h2 class="section-title">We are <em>TriBe Creatives</em></h2>
         <div class="section-divider"><div class="section-divider-dot"></div></div>
         <p>We are a passionate events management team based in Ontario, Canada, dedicated to turning your most precious milestones into unforgettable experiences. From intimate celebrations to grand affairs, we approach every event with care, creativity, and a commitment to excellence.</p>
         <p>Our team believes every celebration deserves elegance without the stress. We handle every detail — from concept to execution — so you can be fully present for the moments that matter most.</p>
@@ -497,106 +941,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
-    <div class="services-header reveal">
-      <p class="section-label">What We Offer</p>
-      <h2 class="section-title">Our <em>Services</em></h2>
-      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
-      <p style="max-width:560px;margin:0 auto;color:#666;font-size:0.97rem;line-height:1.75;font-weight:300;">From the first concept to the final farewell, we handle every detail so your event unfolds flawlessly.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <h3>Full Event Planning</h3>
-        <p>End-to-end coordination from concept and theme development to day-of execution. We manage all logistics so you can enjoy every moment.</p>
-        <span class="service-tag">Birthdays · Debuts · Quinceañeras</span>
-        <button class="btn-book-now" onclick="openSvcModal('Full Event Planning','End-to-end coordination from concept and theme development to day-of execution. We manage vendors, timelines, and all logistics so you can be fully present and enjoy every single moment of your celebration.',['Theme & concept development','Vendor sourcing & management','Full timeline creation','Day-of coordination','Budget management'])">Book Now</button>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Design & Styling</h3>
-        <p>Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting that reflects your personality.</p>
-        <span class="service-tag">Décor · Florals · Styling</span>
-        <button class="btn-book-now" onclick="openSvcModal('Design & Styling','Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting. Every element is thoughtfully chosen to reflect your personality and vision.',['Custom theme moodboard','Floral arrangements','Table & venue styling','Backdrop & focal point design','Color palette curation'])">Book Now</button>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>Vendor Coordination</h3>
-        <p>We connect you with trusted local vendors — photographers, caterers, entertainers, and more — and manage all communications on your behalf.</p>
-        <span class="service-tag">Catering · Photography · Entertainment</span>
-        <button class="btn-book-now" onclick="openSvcModal('Vendor Coordination','We connect you with our trusted network of local vendors — photographers, caterers, entertainers, and more — and handle all communications and logistics on your behalf so you never have to chase a single call or email.',['Vendor sourcing & vetting','Contract negotiation','Communication management','Day-of vendor briefing','Post-event follow-up'])">Book Now</button>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <h3>Debut Celebrations</h3>
-        <p>A debut is a once-in-a-lifetime milestone. We craft meaningful ceremonies and receptions that celebrate the journey into womanhood with grace and joy.</p>
-        <span class="service-tag">18 Roses · Cotillion · Grand Entrance</span>
-        <button class="btn-book-now" onclick="openSvcModal('Debut Celebrations','A debut is a once-in-a-lifetime milestone, and we treat it that way. We craft meaningful ceremonies and receptions that celebrate the debutante\'s journey into womanhood with elegance, grace, and unforgettable joy.',['18 Roses & 18 Candles planning','Cotillion de Honor coordination','Grand entrance choreography','Debut gown liaison','Full reception planning'])">Book Now</button>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <h3>Day-Of Coordination</h3>
-        <p>Already planned your event? Let us step in on the day to ensure every timeline is followed, every vendor is in place, and every moment runs perfectly.</p>
-        <span class="service-tag">Timeline · Logistics · On-Site Management</span>
-        <button class="btn-book-now" onclick="openSvcModal('Day-Of Coordination','Already planned everything? Let us step in on your big day to ensure every timeline is followed, every vendor is in place, and every moment unfolds exactly as you envisioned — without you lifting a finger.',['Pre-event timeline review','Vendor confirmation calls','On-site coordination team','Guest & flow management','Problem-solving on the spot'])">Book Now</button>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <h3>Custom Celebrations</h3>
-        <p>Every milestone deserves to be celebrated. Whether it's a quinceañera, bridal shower, or milestone anniversary, we bring your unique vision to life.</p>
-        <span class="service-tag">Quinceañeras · Showers · Anniversaries</span>
-        <button class="btn-book-now" onclick="openSvcModal('Custom Celebrations','Every milestone deserves to be celebrated in a way that feels uniquely yours. Whether it\'s a quinceañera, bridal shower, milestone anniversary, or any cherished occasion, we bring your vision to life with creativity and heart.',['Fully custom concept design','Theme & décor planning','Catering & entertainment curation','Invitation & stationery design','Complete event execution'])">Book Now</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SHOWCASE -->
-<section id="showcase">
-  <div class="section-inner">
-    <div class="showcase-header reveal">
-      <p class="section-label" style="color:rgba(184,153,88,0.8);">Our Work</p>
-      <h2 class="section-title">Event <em style="color:white;font-style:italic;">Showcase</em></h2>
-      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot" style="background:var(--gold);"></div></div>
-      <p style="max-width:520px;margin:0 auto;color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.75;font-weight:300;">A glimpse into the beautiful moments we've helped create for our incredible clients across Ontario.</p>
-    </div>
-    <div class="showcase-grid">
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Garden Elegance</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Debut</span><p>Golden Night</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Quinceañera</span><p>Royal Rose Affair</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Anniversary</span><p>Silver Celebration</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Enchanted Forest</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Bridal Shower</span><p>Botanical Luxe</p></div></div>
-    </div>
-    <p class="showcase-coming">Portfolio photos coming soon — follow us on Facebook for sneak peeks.</p>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews">
-  <div class="section-inner">
-    <div class="reviews-header reveal">
-      <p class="section-label">Kind Words</p>
-      <h2 class="section-title">Client <em>Reviews</em></h2>
-      <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card reveal"><span class="review-quote">"</span><p class="review-text">Tribe Creatives made my daughter's debut an absolute dream. Every detail was perfect — from the florals to the timeline. We didn't have to worry about a single thing.</p><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="reviewer-name">Maria Santos</p><p class="reviewer-event">Debut Celebration · Ontario</p></div>
-      <div class="review-card reveal"><span class="review-quote">"</span><p class="review-text">The team was professional, creative, and truly cared about making our event special. Our quinceañera was beyond anything we could have imagined. Highly recommend!</p><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="reviewer-name">Lucia Reyes</p><p class="reviewer-event">Quinceañera · Ontario</p></div>
-      <div class="review-card reveal"><span class="review-quote">"</span><p class="review-text">I was amazed at how stress-free my birthday celebration was. Tribe Creatives handled everything beautifully and the décor was absolutely stunning. 10/10!</p><div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="reviewer-name">Christine Dela Cruz</p><p class="reviewer-event">Birthday Celebration · Ontario</p></div>
     </div>
   </div>
 </section>
@@ -666,6 +1010,11 @@
     <div class="svc-modal-head">
       <span class="svc-modal-eyebrow">Selected Service</span>
       <h2 id="svcTitle">—</h2>
+      <!-- Price in modal -->
+      <div class="svc-modal-price">
+        <span class="mprice-from">Starting at</span>
+        <span class="mprice-amount" id="svcModalPrice">—</span>
+      </div>
       <button class="modal-x" onclick="closeSvcModal()" aria-label="Close">&times;</button>
     </div>
     <div class="svc-modal-body">
@@ -766,15 +1115,54 @@
   }
 
   /* ══════════════════════════════════
+     TESTIMONIALS CAROUSEL
+  ══════════════════════════════════ */
+  const track = document.getElementById('carouselTrack');
+  const slides = track.querySelectorAll('.carousel-slide');
+  const dotsWrap = document.getElementById('carouselDots');
+  let current = 0;
+  let autoTimer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(idx) {
+    current = (idx + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    resetAuto();
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), 5000);
+  }
+  resetAuto();
+
+  /* ══════════════════════════════════
      STEP 1 — SERVICE MODAL
   ══════════════════════════════════ */
   let activeService = '';
+  let activePrice = '';
 
-  function openSvcModal(title, desc, includes) {
+  function openSvcModal(title, desc, price, includes) {
     activeService = title;
+    activePrice = price;
     document.getElementById('svcTitle').textContent = title;
     document.getElementById('svcDesc').textContent = desc;
-    document.getElementById('svcList').innerHTML = includes.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('svcModalPrice').textContent = price;
+    // Adjust label for custom
+    document.querySelector('.mprice-from').textContent = price === 'Custom Quote' ? 'Pricing:' : 'Starting at';
+    document.getElementById('svcList').innerHTML = includes.map(i => '<li>' + i + '</li>').join('');
     document.getElementById('svcOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -794,7 +1182,7 @@
   function goToBooking() {
     closeSvcModal();
     setTimeout(() => {
-      document.getElementById('bookChip').textContent = activeService;
+      document.getElementById('bookChip').textContent = activeService + '  ·  ' + activePrice;
       document.getElementById('bookFormWrap').style.display = 'block';
       document.getElementById('bookSuccess').classList.remove('show');
       ['bf-fname','bf-lname','bf-email','bf-phone','bf-date','bf-notes'].forEach(id => document.getElementById(id).value = '');
@@ -826,12 +1214,10 @@
     const email = document.getElementById('bf-email').value.trim();
     const phone = document.getElementById('bf-phone').value.trim();
     const date  = document.getElementById('bf-date').value;
-
     if (!fname || !lname) { alert('Please enter your full name.'); return; }
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
     if (!phone) { alert('Please enter your phone number.'); return; }
     if (!date)  { alert('Please select a possible date for your event.'); return; }
-
     document.getElementById('bookFormWrap').style.display = 'none';
     document.getElementById('successSvcName').textContent = activeService;
     document.getElementById('bookSuccess').classList.add('show');
