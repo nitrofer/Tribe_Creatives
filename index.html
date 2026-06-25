@@ -31,11 +31,22 @@
       padding: 0.75rem 2rem; transition: box-shadow 0.3s;
     }
     nav.scrolled { box-shadow: 0 2px 20px rgba(29,91,58,0.1); }
+    
     .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .nav-logo img { height: 52px; width: 52px; object-fit: contain; }
-    .nav-brand { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-brand { 
+      display: flex; flex-direction: column; line-height: 1.1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .nav-brand.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
     .nav-brand .tribe { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
     .nav-brand .creatives { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 400; color: var(--purple); letter-spacing: 0.2em; text-transform: uppercase; }
+    
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { text-decoration: none; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--gold); position: relative; padding-bottom: 3px; transition: color 0.2s; }
     .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--purple); transition: width 0.3s ease; }
@@ -48,98 +59,128 @@
     .mobile-menu a { text-decoration: none; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--dark); padding: 0.5rem 0; border-bottom: 1px solid rgba(184,153,88,0.15); transition: color 0.2s; }
     .mobile-menu a:hover { color: var(--green); }
 
-    /* ── HERO ── */
+    /* ══════════════════════════════════
+       HERO — REDESIGNED (light, clean)
+    ══════════════════════════════════ */
     #home {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 7rem 2rem 4rem;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
       position: relative; overflow: hidden;
-      background-color: var(--dark);
+      background-color: var(--cream);
     }
-    /* SVG pattern overlay */
-    .hero-pattern {
+
+    /* Subtle decorative rings */
+    .hero-ring-light {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-ring-light-1 {
+      width: 700px; height: 700px;
+      border: 1px solid rgba(184,153,88,0.1);
+    }
+    .hero-ring-light-2 {
+      width: 520px; height: 520px;
+      border: 1px solid rgba(184,153,88,0.08);
+    }
+    .hero-ring-light-3 {
+      width: 880px; height: 880px;
+      border: 1px solid rgba(107,45,140,0.05);
+    }
+    /* Soft radial gradient wash */
+    .hero-glow {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 55% at 50% 50%, rgba(184,153,88,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 35% at 20% 80%, rgba(29,91,58,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 30% at 80% 20%, rgba(107,45,140,0.04) 0%, transparent 60%);
+    }
+    /* Mesh grid — very subtle */
+    .hero-mesh-light {
       position: absolute; inset: 0; z-index: 0; pointer-events: none;
       background-image:
-        radial-gradient(circle at 20% 50%, rgba(29,91,58,0.55) 0%, transparent 50%),
-        radial-gradient(circle at 80% 30%, rgba(107,45,140,0.45) 0%, transparent 50%),
-        radial-gradient(circle at 55% 80%, rgba(184,153,88,0.18) 0%, transparent 40%);
-    }
-    /* Decorative SVG florets / bokeh */
-    .hero-bokeh {
-      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
-    }
-    .hero-bokeh::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600'%3E%3Ccircle cx='120' cy='80' r='60' fill='rgba(184,153,88,0.06)'/%3E%3Ccircle cx='780' cy='120' r='90' fill='rgba(107,45,140,0.07)'/%3E%3Ccircle cx='450' cy='500' r='120' fill='rgba(29,91,58,0.07)'/%3E%3Ccircle cx='200' cy='400' r='50' fill='rgba(184,153,88,0.05)'/%3E%3Ccircle cx='700' cy='440' r='70' fill='rgba(107,45,140,0.05)'/%3E%3Cpath d='M50 300 Q150 200 250 300 Q350 400 450 300' stroke='rgba(184,153,88,0.08)' stroke-width='1.5' fill='none'/%3E%3Cpath d='M650 150 Q750 250 850 150' stroke='rgba(107,45,140,0.07)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-      background-size: cover; background-position: center;
-    }
-    /* Elegant mesh grid */
-    .hero-mesh {
-      position: absolute; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(184,153,88,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(184,153,88,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(184,153,88,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,153,88,0.025) 1px, transparent 1px);
       background-size: 60px 60px;
     }
-    /* Ornament rings */
-    .hero-ring {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 640px; height: 640px; border-radius: 50%;
-      border: 1px solid rgba(184,153,88,0.08); pointer-events: none; z-index: 0;
+
+    /* Hero content sits above decorations */
+    .hero-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+
+    /* Big two-color wordmark */
+    .hero-wordmark {
+      margin-bottom: 0.25rem;
+      animation: fadeUp 0.9s 0.25s ease both;
+      line-height: 1.05;
     }
-    .hero-ring::before {
-      content: ''; position: absolute; inset: 60px; border-radius: 50%;
-      border: 1px solid rgba(184,153,88,0.06);
-    }
-    .hero-ring::after {
-      content: ''; position: absolute; inset: -80px; border-radius: 50%;
-      border: 1px solid rgba(184,153,88,0.05);
-    }
-    /* Dark overlay for text readability */
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: linear-gradient(to bottom, rgba(20,20,20,0.25) 0%, rgba(20,20,20,0.1) 50%, rgba(20,20,20,0.4) 100%);
-    }
-    .hero-content { position: relative; z-index: 2; }
-    /* Floating decorative label */
-    .hero-event-label {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      margin-bottom: 2rem;
-      animation: fadeUp 1s 0.15s ease both;
-    }
-    .hero-event-label::before, .hero-event-label::after {
-      content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.7;
-    }
-    .hero-event-label span {
-      font-size: 0.68rem; letter-spacing: 0.45em; text-transform: uppercase;
-      color: var(--gold); font-weight: 700;
-    }
-    .hero-tagline {
+    .hero-wordmark-tribe {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5.5vw, 4rem);
-      font-weight: 600; color: var(--white); line-height: 1.15;
-      max-width: 780px; animation: fadeUp 1s 0.3s ease both; margin-bottom: 0.75rem;
+      font-size: clamp(4rem, 10vw, 7.5rem);
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.03em;
+      display: block;
+      line-height: 1;
     }
-    .hero-tagline em { font-style: italic; color: var(--gold); }
-    .gold-divider {
-      display: flex; align-items: center; gap: 1rem; justify-content: center;
-      animation: fadeUp 1s 0.45s ease both; margin: 1.5rem 0;
+    .hero-wordmark-creatives {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.4rem, 8.5vw, 6.5rem);
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.01em;
+      display: block;
+      line-height: 1.05;
     }
-    .gold-divider::before, .gold-divider::after {
-      content: ''; width: 80px; height: 1px;
-      background: linear-gradient(to right, transparent, rgba(184,153,88,0.6));
+
+    /* Location label with gold rules */
+    .hero-location {
+      display: inline-flex; align-items: center; gap: 1rem;
+      margin: 1.5rem 0 1.75rem;
+      animation: fadeUp 0.9s 0.4s ease both;
     }
-    .gold-divider::after { background: linear-gradient(to left, transparent, rgba(184,153,88,0.6)); }
-    .gold-divider svg { width: 18px; height: 18px; }
-    .hero-desc {
-      font-size: clamp(0.95rem, 2vw, 1.1rem); color: rgba(255,255,255,0.75);
-      max-width: 600px; line-height: 1.85; font-weight: 300;
-      animation: fadeUp 1s 0.55s ease both; margin-bottom: 2.5rem;
+    .hero-location-line {
+      width: 60px; height: 1px; background: var(--gold); opacity: 0.7;
     }
+    .hero-location span {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Tagline */
+    .hero-tagline-light {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.9s 0.5s ease both;
+      line-height: 1.4;
+    }
+
+    /* Description */
+    .hero-desc-light {
+      font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+      color: #555;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+      font-weight: 300;
+      animation: fadeUp 0.9s 0.6s ease both;
+    }
+
+    /* CTA buttons */
     .hero-cta {
       display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-      animation: fadeUp 1s 0.65s ease both;
+      animation: fadeUp 0.9s 0.72s ease both;
     }
 
     /* ── BUTTONS ── */
@@ -159,13 +200,13 @@
     .section-divider-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
 
     /* ── SERVICES ── */
-    #services { background: var(--cream); }
+    
+    #services { background: #b89a580c; }
     .services-header { text-align: center; margin-bottom: 4rem; }
     .services-header .section-divider { justify-content: center; }
     .services-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, var(--gold), transparent); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 
-    /* Service card with background image */
     .service-card {
       position: relative; overflow: hidden;
       border: 1px solid rgba(184,153,88,0.15);
@@ -175,7 +216,6 @@
     }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.25); }
 
-    /* BG image layer via SVG illustration */
     .svc-bg {
       position: absolute; inset: 0; z-index: 0;
       background-size: cover; background-position: center;
@@ -183,7 +223,6 @@
     }
     .service-card:hover .svc-bg { transform: scale(1.05); }
 
-    /* Overlay gradient */
     .svc-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(to top, rgba(20,20,20,0.88) 0%, rgba(20,20,20,0.45) 55%, rgba(20,20,20,0.1) 100%);
@@ -193,7 +232,6 @@
       background: linear-gradient(to top, rgba(20,20,20,0.92) 0%, rgba(20,20,20,0.55) 60%, rgba(20,20,20,0.15) 100%);
     }
 
-    /* Top accent bar */
     .service-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(to right, var(--green), var(--purple));
@@ -208,7 +246,6 @@
       display: flex; flex-direction: column;
     }
 
-    /* Price badge */
     .svc-price-badge {
       position: absolute; top: 1.1rem; right: 1.1rem; z-index: 4;
       background: rgba(184,153,88,0.92);
@@ -241,7 +278,6 @@
       margin-bottom: 0.85rem; display: block;
     }
 
-    /* Price line below tag */
     .svc-price-line {
       display: flex; align-items: center; gap: 0.5rem;
       margin-bottom: 1rem;
@@ -258,7 +294,6 @@
       font-size: 0.72rem; color: rgba(255,255,255,0.45); font-weight: 300;
     }
 
-    /* Book now button on card */
     .btn-book-now {
       display: block; width: 100%;
       padding: 0.7rem 1rem;
@@ -275,33 +310,14 @@
       transform: translateY(-1px);
     }
 
-    /* Individual card BGs — using Unsplash source + color fallbacks */
-    .svc-bg-planning {
-      background-color: #1a2e20;
-      background-image: url('assets/fullevent-planning.jpg');
-    }
-    .svc-bg-design {
-      background-color: #251828;
-      background-image: url('assets/designandstyling.jpg');
-    }
-    .svc-bg-vendor {
-      background-color: #1a2030;
-      background-image: url('assets/vendorcoordination.jpg');
-    }
-    .svc-bg-debut {
-      background-color: #1e1525;
-      background-image: url('assets/debutcelebration.jpg');
-    }
-    .svc-bg-dayof {
-      background-color: #0f1e16;
-      background-image: url('assets/day-off-coordination.jpg');
-    }
-    .svc-bg-custom {
-      background-color: #1d1520;
-      background-image: url('assets/custom-celebration.jpg');
-    }
+    .svc-bg-planning { background-color: #1a2e20; background-image: url('assets/fullevent-planning.jpg'); }
+    .svc-bg-design { background-color: #251828; background-image: url('assets/designandstyling.jpg'); }
+    .svc-bg-vendor { background-color: #1a2030; background-image: url('assets/vendorcoordination.jpg'); }
+    .svc-bg-debut { background-color: #1e1525; background-image: url('assets/debutcelebration.jpg'); }
+    .svc-bg-dayof { background-color: #0f1e16; background-image: url('assets/day-off coordination.jpg'); }
+    .svc-bg-custom { background-color: #1d1520; background-image: url('assets/custom-celebration.jpg'); }
 
-    /* ── PORTFOLIO (was SHOWCASE) ── */
+    /* ── PORTFOLIO ── */
     #portfolio { background: var(--green); color: white; }
     #portfolio .section-title { color: var(--gold); }
     #portfolio .section-label { color: rgba(184,153,88,0.8); }
@@ -320,64 +336,26 @@
     .showcase-label p { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; margin-top: 0.25rem; }
     .showcase-coming { text-align: center; margin-top: 3rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.1em; }
 
-    /* ── TESTIMONIALS CAROUSEL (was REVIEWS) ── */
+    /* ── TESTIMONIALS ── */
     #testimonials { background: var(--white); overflow: hidden; }
     .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
     .carousel-wrap { position: relative; max-width: 860px; margin: 0 auto; }
-
     .carousel-track-outer { overflow: hidden; position: relative; }
-    .carousel-track {
-      display: flex; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1);
-      will-change: transform;
-    }
-    .carousel-slide {
-      flex: 0 0 100%; padding: 0 1rem;
-    }
-
-    /* Large featured card */
-    .review-card-featured {
-      background: var(--cream);
-      border: 1px solid rgba(184,153,88,0.15);
-      padding: 3rem 3.5rem;
-      position: relative;
-      text-align: center;
-    }
-    .review-card-featured::before {
-      content: '\201C';
-      font-family: 'Playfair Display', serif; font-size: 7rem;
-      color: rgba(184,153,88,0.12); line-height: 0.6;
-      position: absolute; top: 2rem; left: 2rem;
-    }
-    .review-text-featured {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
-      color: #444; line-height: 1.85; font-style: italic;
-      margin-bottom: 2rem; position: relative; z-index: 1;
-    }
+    .carousel-track { display: flex; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1); will-change: transform; }
+    .carousel-slide { flex: 0 0 100%; padding: 0 1rem; }
+    .review-card-featured { background: var(--cream); border: 1px solid rgba(184,153,88,0.15); padding: 3rem 3.5rem; position: relative; text-align: center; }
+    .review-card-featured::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 7rem; color: rgba(184,153,88,0.12); line-height: 0.6; position: absolute; top: 2rem; left: 2rem; }
+    .review-text-featured { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2.2vw, 1.2rem); color: #444; line-height: 1.85; font-style: italic; margin-bottom: 2rem; position: relative; z-index: 1; }
     .review-stars-featured { display: flex; gap: 4px; justify-content: center; margin-bottom: 1.25rem; }
     .star { color: var(--gold); font-size: 0.9rem; }
     .reviewer-name-featured { font-size: 1rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
     .reviewer-event-featured { font-size: 0.78rem; color: var(--berry); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
-
-    /* Carousel controls */
-    .carousel-controls {
-      display: flex; align-items: center; justify-content: center;
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .carousel-btn {
-      width: 44px; height: 44px;
-      background: transparent; border: 1.5px solid rgba(184,153,88,0.4);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: all 0.25s; color: var(--gold);
-    }
+    .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; }
+    .carousel-btn { width: 44px; height: 44px; background: transparent; border: 1.5px solid rgba(184,153,88,0.4); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; color: var(--gold); }
     .carousel-btn:hover { background: var(--green); border-color: var(--green); color: white; }
     .carousel-btn svg { width: 18px; height: 18px; }
     .carousel-dots { display: flex; gap: 0.55rem; }
-    .carousel-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(184,153,88,0.25); border: none; cursor: pointer;
-      transition: background 0.25s, transform 0.25s; padding: 0;
-    }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(184,153,88,0.25); border: none; cursor: pointer; transition: background 0.25s, transform 0.25s; padding: 0; }
     .carousel-dot.active { background: var(--gold); transform: scale(1.3); }
 
     /* ── ABOUT US ── */
@@ -437,131 +415,36 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ══════════════════════════════════
-       MODAL — SHARED BASE
-    ══════════════════════════════════ */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 2000;
-      background: rgba(20, 20, 20, 0.72);
-      backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 1.5rem;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
+    /* ── MODALS ── */
+    .modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(20, 20, 20, 0.72); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-
-    /* ── STEP 1: SERVICE INFO MODAL ── */
-    .svc-modal {
-      background: var(--white);
-      width: 100%; max-width: 540px;
-      max-height: 90vh; overflow-y: auto;
-      position: relative;
-      transform: translateY(28px) scale(0.98);
-      transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
-    }
+    .svc-modal { background: var(--white); width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(28px) scale(0.98); transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1); }
     .modal-overlay.active .svc-modal { transform: translateY(0) scale(1); }
-
-    .svc-modal-head {
-      background: linear-gradient(135deg, var(--green) 0%, #154d31 100%);
-      padding: 2rem 2.25rem 1.75rem;
-      position: relative;
-    }
-    .svc-modal-eyebrow {
-      font-size: 0.67rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--gold); font-weight: 700; display: block; margin-bottom: 0.5rem;
-    }
-    .svc-modal-head h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; font-weight: 600; color: white; line-height: 1.25;
-    }
-    /* Price inside modal header */
-    .svc-modal-price {
-      display: inline-flex; align-items: baseline; gap: 0.4rem;
-      margin-top: 0.85rem;
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(184,153,88,0.35);
-      padding: 0.4rem 1rem;
-    }
-    .svc-modal-price .mprice-from {
-      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.55); font-weight: 700;
-    }
-    .svc-modal-price .mprice-amount {
-      font-family: 'Playfair Display', serif; font-size: 1.55rem;
-      font-weight: 700; color: var(--gold);
-    }
-    .svc-modal-price .mprice-unit {
-      font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 300;
-    }
-
-    .modal-x {
-      position: absolute; top: 1.1rem; right: 1.1rem;
-      width: 34px; height: 34px; border: none; cursor: pointer;
-      background: rgba(255,255,255,0.14); color: white;
-      font-size: 1.15rem; line-height: 1;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
+    .svc-modal-head { background: linear-gradient(135deg, var(--green) 0%, #154d31 100%); padding: 2rem 2.25rem 1.75rem; position: relative; }
+    .svc-modal-eyebrow { font-size: 0.67rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; margin-bottom: 0.5rem; }
+    .svc-modal-head h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: white; line-height: 1.25; }
+    .svc-modal-price { display: inline-flex; align-items: baseline; gap: 0.4rem; margin-top: 0.85rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(184,153,88,0.35); padding: 0.4rem 1rem; }
+    .svc-modal-price .mprice-from { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 700; }
+    .svc-modal-price .mprice-amount { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--gold); }
+    .svc-modal-price .mprice-unit { font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 300; }
+    .modal-x { position: absolute; top: 1.1rem; right: 1.1rem; width: 34px; height: 34px; border: none; cursor: pointer; background: rgba(255,255,255,0.14); color: white; font-size: 1.15rem; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
     .modal-x:hover { background: rgba(255,255,255,0.28); }
-
     .svc-modal-body { padding: 1.75rem 2.25rem 2.25rem; }
     .svc-desc { font-size: 0.97rem; color: #555; line-height: 1.8; font-weight: 300; margin-bottom: 1.5rem; }
-
-    .svc-includes {
-      background: var(--light-green);
-      border-left: 3px solid var(--green);
-      padding: 1.1rem 1.4rem; margin-bottom: 1.75rem;
-    }
-    .svc-includes-label {
-      font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--green); font-weight: 700; display: block; margin-bottom: 0.65rem;
-    }
+    .svc-includes { background: var(--light-green); border-left: 3px solid var(--green); padding: 1.1rem 1.4rem; margin-bottom: 1.75rem; }
+    .svc-includes-label { font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); font-weight: 700; display: block; margin-bottom: 0.65rem; }
     .svc-includes ul { list-style: none; display: flex; flex-direction: column; gap: 0.38rem; }
-    .svc-includes ul li {
-      font-size: 0.88rem; color: #444; font-weight: 300;
-      display: flex; align-items: center; gap: 0.55rem;
-    }
+    .svc-includes ul li { font-size: 0.88rem; color: #444; font-weight: 300; display: flex; align-items: center; gap: 0.55rem; }
     .svc-includes ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-
     .svc-note { font-size: 0.81rem; color: var(--berry); font-style: italic; margin-bottom: 1.75rem; }
-
     .svc-modal-actions { display: flex; gap: 0.85rem; }
-    .btn-cancel {
-      background: transparent; color: #888;
-      border: 1.5px solid rgba(0,0,0,0.13);
-      padding: 0.85rem 1.4rem;
-      font-family: 'Lato', sans-serif; font-size: 0.76rem;
-      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
-      cursor: pointer; transition: all 0.2s;
-    }
+    .btn-cancel { background: transparent; color: #888; border: 1.5px solid rgba(0,0,0,0.13); padding: 0.85rem 1.4rem; font-family: 'Lato', sans-serif; font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: all 0.2s; }
     .btn-cancel:hover { border-color: #555; color: #333; }
-    .btn-next {
-      flex: 1; background: var(--green); color: white;
-      border: none; padding: 0.85rem 1.4rem;
-      font-family: 'Lato', sans-serif; font-size: 0.76rem;
-      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 18px rgba(29,91,58,0.25);
-    }
+    .btn-next { flex: 1; background: var(--green); color: white; border: none; padding: 0.85rem 1.4rem; font-family: 'Lato', sans-serif; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 4px 18px rgba(29,91,58,0.25); }
     .btn-next:hover { background: #164a2d; transform: translateY(-2px); box-shadow: 0 8px 26px rgba(29,91,58,0.3); }
-
-    /* ── STEP 2: BOOKING FORM MODAL ── */
-    .book-modal {
-      background: var(--white);
-      width: 100%; max-width: 580px;
-      max-height: 92vh; overflow-y: auto;
-      position: relative;
-      transform: translateY(28px) scale(0.98);
-      transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
-    }
+    .book-modal { background: var(--white); width: 100%; max-width: 580px; max-height: 92vh; overflow-y: auto; position: relative; transform: translateY(28px) scale(0.98); transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1); }
     .modal-overlay.active .book-modal { transform: translateY(0) scale(1); }
-
-    .book-modal-head {
-      background: linear-gradient(135deg, var(--purple) 0%, #4e1a6b 100%);
-      padding: 2rem 2.25rem 1.75rem;
-      position: relative;
-    }
+    .book-modal-head { background: linear-gradient(135deg, var(--purple) 0%, #4e1a6b 100%); padding: 2rem 2.25rem 1.75rem; position: relative; }
     .step-track { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.9rem; }
     .step-pip { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.28); transition: width 0.3s, background 0.3s; width: 22px; }
     .step-pip.done { background: var(--gold); }
@@ -569,17 +452,8 @@
     .step-track-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin-left: 0.2rem; }
     .book-modal-head h2 { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
     .book-modal-subtitle { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 700; }
-    .selected-service-chip {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      margin-top: 1rem;
-      background: rgba(255,255,255,0.13);
-      border: 1px solid rgba(255,255,255,0.22);
-      padding: 0.32rem 0.9rem;
-      font-size: 0.72rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gold); font-weight: 700;
-    }
+    .selected-service-chip { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1rem; background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22); padding: 0.32rem 0.9rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
     .selected-service-chip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-
     .book-modal-body { padding: 1.75rem 2.25rem 2.25rem; }
     .bf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.1rem; }
     .bf-group { display: flex; flex-direction: column; }
@@ -593,8 +467,6 @@
     .btn-back:hover { border-color: var(--purple); color: var(--purple); }
     .btn-book-submit { flex: 1; background: var(--purple); color: white; border: none; padding: 0.9rem 1.4rem; font-family: 'Lato', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 4px 18px rgba(107,45,140,0.3); }
     .btn-book-submit:hover { background: #4e1a6b; transform: translateY(-2px); box-shadow: 0 8px 26px rgba(107,45,140,0.35); }
-
-    /* ── SUCCESS STATE ── */
     .book-success { display: none; text-align: center; padding: 3rem 2.25rem 2.5rem; }
     .book-success.show { display: block; }
     .success-icon-wrap { width: 70px; height: 70px; border-radius: 50%; background: var(--light-green); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.4rem; }
@@ -613,6 +485,9 @@
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .bf-grid { grid-template-columns: 1fr; }
       .bf-group.span2 { grid-column: 1; }
+      .hero-ring-light-1 { width: 420px; height: 420px; }
+      .hero-ring-light-2 { width: 300px; height: 300px; }
+      .hero-ring-light-3 { width: 560px; height: 560px; }
     }
     @media (max-width: 640px) {
       nav { padding: 0.75rem 1.25rem; }
@@ -633,11 +508,14 @@
 </head>
 <body>
 
-<!-- NAV — updated order & labels -->
+<!-- NAV -->
 <nav id="main-nav">
   <a href="#home" class="nav-logo">
     <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
-    <div class="nav-brand"><span class="tribe">TRIBE</span><span class="creatives">Creatives</span></div>
+    <div class="nav-brand" id="navBrand">
+      <span class="tribe">TRIBE</span>
+      <span class="creatives">Creatives</span>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
@@ -661,27 +539,44 @@
   <a href="#contact" onclick="closeMobile()">Contact</a>
 </div>
 
-<!-- HERO — redesigned with rich event-management background -->
+<!-- ══════════════════════════════════
+     HERO — REDESIGNED (light/clean)
+══════════════════════════════════ -->
 <section id="home">
-  <div class="hero-pattern"></div>
-  <div class="hero-bokeh"></div>
-  <div class="hero-mesh"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-overlay"></div>
+  <!-- Background decorations -->
+  <div class="hero-glow"></div>
+  <div class="hero-mesh-light"></div>
+  <div class="hero-ring-light hero-ring-light-3"></div>
+  <div class="hero-ring-light hero-ring-light-1"></div>
+  <div class="hero-ring-light hero-ring-light-2"></div>
 
   <div class="hero-content">
-    <div class="hero-event-label">
-      <span>Events &amp; Management · Ontario, Canada</span>
+
+    <!-- Two-color wordmark -->
+    <div class="hero-wordmark">
+      <span class="hero-wordmark-tribe">Tribe</span>
+      <span class="hero-wordmark-creatives">Creatives</span>
     </div>
-    <h1 class="hero-tagline">You dream it,<br/><em>we bring it to life.</em></h1>
-    <div class="gold-divider">
-      <svg viewBox="0 0 18 18" fill="none"><path d="M9 1 L10.5 6.5 L16.5 6.5 L11.5 10 L13.5 16 L9 12.5 L4.5 16 L6.5 10 L1.5 6.5 L7.5 6.5 Z" fill="#B89958" opacity="0.7"/></svg>
+
+    <!-- Location with gold rules -->
+    <div class="hero-location">
+      <div class="hero-location-line"></div>
+      <span>Ontario, Canada</span>
+      <div class="hero-location-line"></div>
     </div>
-    <p class="hero-desc">At Tribe Creatives, we specialize in crafting stress-free, elegant experiences for your most cherished moments — birthdays, debuts, quinceañeras, and beyond. Let us handle the planning so you can focus on making memories.</p>
+
+    <!-- Italic gold tagline -->
+    <p class="hero-tagline-light">You dream it, we bring it to life.</p>
+
+    <!-- Description -->
+    <p class="hero-desc-light">At Tribe Creatives, we specialize in crafting stress-free, elegant experiences for your most cherished moments — birthdays, debuts, quinceañeras, and beyond. Let us handle the planning so you can focus on making memories.</p>
+
+    <!-- CTAs -->
     <div class="hero-cta">
       <a href="#services" class="btn-primary">Explore Services</a>
       <a href="#contact" class="btn-outline">Book a Consultation</a>
     </div>
+
   </div>
 </section>
 
@@ -696,128 +591,86 @@
     </div>
     <div class="services-grid">
 
-      <!-- 1 — Full Event Planning -->
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-planning"></div>
         <div class="svc-overlay"></div>
         <div class="svc-price-badge">From $1,200</div>
         <div class="svc-content">
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
           <h3>Full Event Planning</h3>
           <p>End-to-end coordination from concept and theme development to day-of execution. We manage all logistics so you can enjoy every moment.</p>
           <span class="service-tag">Birthdays · Debuts · Quinceañeras</span>
-          <div class="svc-price-line">
-            <span class="price-from">Starting at</span>
-            <span class="price-amount">$1,200</span>
-            <span class="price-unit">/ event</span>
-          </div>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$1,200</span><span class="price-unit">/ event</span></div>
           <button class="btn-book-now" onclick="openSvcModal('Full Event Planning','End-to-end coordination from concept and theme development to day-of execution. We manage vendors, timelines, and all logistics so you can be fully present and enjoy every single moment of your celebration.','$1,200',['Theme & concept development','Vendor sourcing & management','Full timeline creation','Day-of coordination','Budget management'])">Book Now</button>
         </div>
       </div>
 
-      <!-- 2 — Design & Styling -->
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-design"></div>
         <div class="svc-overlay"></div>
         <div class="svc-price-badge">From $650</div>
         <div class="svc-content">
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <h3>Design &amp; Styling</h3>
           <p>Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting that reflects your personality.</p>
           <span class="service-tag">Décor · Florals · Styling</span>
-          <div class="svc-price-line">
-            <span class="price-from">Starting at</span>
-            <span class="price-amount">$650</span>
-            <span class="price-unit">/ event</span>
-          </div>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$650</span><span class="price-unit">/ event</span></div>
           <button class="btn-book-now" onclick="openSvcModal('Design & Styling','Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting. Every element is thoughtfully chosen to reflect your personality and vision.','$650',['Custom theme moodboard','Floral arrangements','Table & venue styling','Backdrop & focal point design','Color palette curation'])">Book Now</button>
         </div>
       </div>
 
-      <!-- 3 — Vendor Coordination -->
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-vendor"></div>
         <div class="svc-overlay"></div>
         <div class="svc-price-badge">From $450</div>
         <div class="svc-content">
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3>Vendor Coordination</h3>
           <p>We connect you with trusted local vendors — photographers, caterers, entertainers, and more — and manage all communications on your behalf.</p>
           <span class="service-tag">Catering · Photography · Entertainment</span>
-          <div class="svc-price-line">
-            <span class="price-from">Starting at</span>
-            <span class="price-amount">$450</span>
-            <span class="price-unit">/ event</span>
-          </div>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$450</span><span class="price-unit">/ event</span></div>
           <button class="btn-book-now" onclick="openSvcModal('Vendor Coordination','We connect you with our trusted network of local vendors — photographers, caterers, entertainers, and more — and handle all communications and logistics on your behalf so you never have to chase a single call or email.','$450',['Vendor sourcing & vetting','Contract negotiation','Communication management','Day-of vendor briefing','Post-event follow-up'])">Book Now</button>
         </div>
       </div>
 
-      <!-- 4 — Debut Celebrations -->
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-debut"></div>
         <div class="svc-overlay"></div>
         <div class="svc-price-badge">From $1,500</div>
         <div class="svc-content">
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
           <h3>Debut Celebrations</h3>
           <p>A debut is a once-in-a-lifetime milestone. We craft meaningful ceremonies and receptions that celebrate the journey into womanhood with grace and joy.</p>
           <span class="service-tag">18 Roses · Cotillion · Grand Entrance</span>
-          <div class="svc-price-line">
-            <span class="price-from">Starting at</span>
-            <span class="price-amount">$1,500</span>
-            <span class="price-unit">/ event</span>
-          </div>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$1,500</span><span class="price-unit">/ event</span></div>
           <button class="btn-book-now" onclick="openSvcModal('Debut Celebrations','A debut is a once-in-a-lifetime milestone, and we treat it that way. We craft meaningful ceremonies and receptions that celebrate the debutante\'s journey into womanhood with elegance, grace, and unforgettable joy.','$1,500',['18 Roses & 18 Candles planning','Cotillion de Honor coordination','Grand entrance choreography','Debut gown liaison','Full reception planning'])">Book Now</button>
         </div>
       </div>
 
-      <!-- 5 — Day-Of Coordination -->
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-dayof"></div>
         <div class="svc-overlay"></div>
         <div class="svc-price-badge">From $380</div>
         <div class="svc-content">
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <h3>Day-Of Coordination</h3>
           <p>Already planned your event? Let us step in on the day to ensure every timeline is followed, every vendor is in place, and every moment runs perfectly.</p>
           <span class="service-tag">Timeline · Logistics · On-Site Management</span>
-          <div class="svc-price-line">
-            <span class="price-from">Starting at</span>
-            <span class="price-amount">$380</span>
-            <span class="price-unit">/ event</span>
-          </div>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$380</span><span class="price-unit">/ event</span></div>
           <button class="btn-book-now" onclick="openSvcModal('Day-Of Coordination','Already planned everything? Let us step in on your big day to ensure every timeline is followed, every vendor is in place, and every moment unfolds exactly as you envisioned — without you lifting a finger.','$380',['Pre-event timeline review','Vendor confirmation calls','On-site coordination team','Guest & flow management','Problem-solving on the spot'])">Book Now</button>
         </div>
       </div>
 
-      <!-- 6 — Custom Celebrations -->
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-custom"></div>
         <div class="svc-overlay"></div>
         <div class="svc-price-badge">Custom Quote</div>
         <div class="svc-content">
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
           <h3>Custom Celebrations</h3>
           <p>Every milestone deserves to be celebrated. Whether it's a quinceañera, bridal shower, or milestone anniversary, we bring your unique vision to life.</p>
           <span class="service-tag">Quinceañeras · Showers · Anniversaries</span>
-          <div class="svc-price-line">
-            <span class="price-from">Pricing</span>
-            <span class="price-amount" style="font-size:1.05rem;letter-spacing:0.02em;">Custom</span>
-            <span class="price-unit">· inquire below</span>
-          </div>
+          <div class="svc-price-line"><span class="price-from">Pricing</span><span class="price-amount" style="font-size:1.05rem;letter-spacing:0.02em;">Custom</span><span class="price-unit">· inquire below</span></div>
           <button class="btn-book-now" onclick="openSvcModal('Custom Celebrations','Every milestone deserves to be celebrated in a way that feels uniquely yours. Whether it\'s a quinceañera, bridal shower, milestone anniversary, or any cherished occasion, we bring your vision to life with creativity and heart.','Custom Quote',['Fully custom concept design','Theme & décor planning','Catering & entertainment curation','Invitation & stationery design','Complete event execution'])">Book Now</button>
         </div>
       </div>
@@ -826,7 +679,7 @@
   </div>
 </section>
 
-<!-- PORTFOLIO (was Showcase) -->
+<!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="section-inner">
     <div class="showcase-header reveal">
@@ -847,7 +700,7 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS (was Reviews) — carousel -->
+<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="section-inner">
     <div class="testimonials-header reveal">
@@ -855,12 +708,9 @@
       <h2 class="section-title">Client <em>Testimonials</em></h2>
       <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
     </div>
-
     <div class="carousel-wrap reveal">
       <div class="carousel-track-outer">
         <div class="carousel-track" id="carouselTrack">
-
-          <!-- Slide 1 -->
           <div class="carousel-slide">
             <div class="review-card-featured">
               <p class="review-text-featured">"Tribe Creatives made my daughter's debut an absolute dream. Every detail was perfect — from the florals to the timeline. We didn't have to worry about a single thing."</p>
@@ -869,8 +719,6 @@
               <p class="reviewer-event-featured">Debut Celebration · Ontario</p>
             </div>
           </div>
-
-          <!-- Slide 2 -->
           <div class="carousel-slide">
             <div class="review-card-featured">
               <p class="review-text-featured">"The team was professional, creative, and truly cared about making our event special. Our quinceañera was beyond anything we could have imagined. Highly recommend!"</p>
@@ -879,8 +727,6 @@
               <p class="reviewer-event-featured">Quinceañera · Ontario</p>
             </div>
           </div>
-
-          <!-- Slide 3 -->
           <div class="carousel-slide">
             <div class="review-card-featured">
               <p class="review-text-featured">"I was amazed at how stress-free my birthday celebration was. Tribe Creatives handled everything beautifully and the décor was absolutely stunning. 10/10!"</p>
@@ -889,36 +735,24 @@
               <p class="reviewer-event-featured">Birthday Celebration · Ontario</p>
             </div>
           </div>
-
-        </div><!-- /track -->
+        </div>
       </div>
-
-      <!-- Controls -->
       <div class="carousel-controls">
-        <button class="carousel-btn" id="prevBtn" aria-label="Previous">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
         <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" id="nextBtn" aria-label="Next">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT US (was About) -->
+<!-- ABOUT US -->
 <section id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image-wrap reveal">
-        <div class="about-img-placeholder">
-          <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
-        </div>
-        <div class="about-accent-box">
-          <span class="num">100%</span>
-          <span class="label">Stress-Free Events</span>
-        </div>
+        <div class="about-img-placeholder"><img src="assets/Tribe Creatives 1.png" style="border-radius:25px;"></div>
+        <div class="about-accent-box"><span class="num">100%</span><span class="label">Stress-Free Events</span></div>
       </div>
       <div class="about-text reveal">
         <p class="section-label">Our Story</p>
@@ -927,18 +761,9 @@
         <p>We are a passionate events management team based in Ontario, Canada, dedicated to turning your most precious milestones into unforgettable experiences. From intimate celebrations to grand affairs, we approach every event with care, creativity, and a commitment to excellence.</p>
         <p>Our team believes every celebration deserves elegance without the stress. We handle every detail — from concept to execution — so you can be fully present for the moments that matter most.</p>
         <div class="about-pillars">
-          <div class="pillar">
-            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div class="pillar-text"><strong>Trusted Planning</strong><span>Every detail handled with professionalism and care.</span></div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div class="pillar-text"><strong>Custom Concepts</strong><span>Tailored themes and designs unique to your vision.</span></div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
-            <div class="pillar-text"><strong>Joyful Experiences</strong><span>Creating memories you and your guests will cherish forever.</span></div>
-          </div>
+          <div class="pillar"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="pillar-text"><strong>Trusted Planning</strong><span>Every detail handled with professionalism and care.</span></div></div>
+          <div class="pillar"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="pillar-text"><strong>Custom Concepts</strong><span>Tailored themes and designs unique to your vision.</span></div></div>
+          <div class="pillar"><div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="pillar-text"><strong>Joyful Experiences</strong><span>Creating memories you and your guests will cherish forever.</span></div></div>
         </div>
       </div>
     </div>
@@ -970,12 +795,7 @@
         <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="+1 (289) 000-0000" /></div>
         <div class="form-group">
           <label for="event-type">Event Type</label>
-          <select id="event-type">
-            <option value="" disabled selected>Select an event type</option>
-            <option>Birthday Celebration</option><option>Debut (18th Birthday)</option>
-            <option>Quinceañera</option><option>Bridal Shower</option>
-            <option>Anniversary</option><option>Other</option>
-          </select>
+          <select id="event-type"><option value="" disabled selected>Select an event type</option><option>Birthday Celebration</option><option>Debut (18th Birthday)</option><option>Quinceañera</option><option>Bridal Shower</option><option>Anniversary</option><option>Other</option></select>
         </div>
         <div class="form-group"><label for="message">Tell Us About Your Event</label><textarea id="message" placeholder="Share your vision, preferred date, guest count, and any other details..."></textarea></div>
         <button class="btn-primary" style="width:100%;" onclick="submitContactForm()">Send Message</button>
@@ -989,105 +809,55 @@
   <div class="footer-inner">
     <div class="footer-logo">
       <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
-      <div class="footer-brand"><span class="tribe">TRIBE CREATIVES</span>
-        <span class="creatives">Events &amp; Management</span></div>
+      <div class="footer-brand"><span class="tribe">TRIBE CREATIVES</span><span class="creatives">Events &amp; Management</span></div>
     </div>
     <p class="footer-motto">Elevating Every Cherished Milestone</p>
     <div class="footer-divider"></div>
-    <p class="footer-bottom">
-      &copy; 2025 Tribe Creatives — Ontario, Canada &nbsp;·&nbsp;
-      <a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a> &nbsp;·&nbsp;
-      <a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">Facebook</a>
-    </p>
+    <p class="footer-bottom">&copy; 2025 Tribe Creatives — Ontario, Canada &nbsp;·&nbsp;<a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a> &nbsp;·&nbsp;<a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">Facebook</a></p>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════
-     STEP 1 — SERVICE INFO MODAL
-════════════════════════════════════════════ -->
+<!-- STEP 1 MODAL -->
 <div class="modal-overlay" id="svcOverlay" role="dialog" aria-modal="true" aria-labelledby="svcTitle">
   <div class="svc-modal">
     <div class="svc-modal-head">
       <span class="svc-modal-eyebrow">Selected Service</span>
       <h2 id="svcTitle">—</h2>
-      <!-- Price in modal -->
-      <div class="svc-modal-price">
-        <span class="mprice-from">Starting at</span>
-        <span class="mprice-amount" id="svcModalPrice">—</span>
-      </div>
+      <div class="svc-modal-price"><span class="mprice-from">Starting at</span><span class="mprice-amount" id="svcModalPrice">—</span></div>
       <button class="modal-x" onclick="closeSvcModal()" aria-label="Close">&times;</button>
     </div>
     <div class="svc-modal-body">
       <p class="svc-desc" id="svcDesc"></p>
-      <div class="svc-includes">
-        <span class="svc-includes-label">What's Included</span>
-        <ul id="svcList"></ul>
-      </div>
+      <div class="svc-includes"><span class="svc-includes-label">What's Included</span><ul id="svcList"></ul></div>
       <p class="svc-note">&#128197; Availability varies by date. Our team will confirm within 24 hours of your request.</p>
-      <div class="svc-modal-actions">
-        <button class="btn-cancel" onclick="closeSvcModal()">Go Back</button>
-        <button class="btn-next" onclick="goToBooking()">Next — Fill In Details &rarr;</button>
-      </div>
+      <div class="svc-modal-actions"><button class="btn-cancel" onclick="closeSvcModal()">Go Back</button><button class="btn-next" onclick="goToBooking()">Next — Fill In Details &rarr;</button></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     STEP 2 — BOOKING FORM MODAL
-════════════════════════════════════════════ -->
+<!-- STEP 2 MODAL -->
 <div class="modal-overlay" id="bookOverlay" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
   <div class="book-modal">
     <div class="book-modal-head">
-      <div class="step-track">
-        <div class="step-pip done"></div>
-        <div class="step-pip active"></div>
-        <span class="step-track-label">Step 2 of 2</span>
-      </div>
+      <div class="step-track"><div class="step-pip done"></div><div class="step-pip active"></div><span class="step-track-label">Step 2 of 2</span></div>
       <h2 id="bookTitle">Booking Form</h2>
       <p class="book-modal-subtitle">Client Details</p>
       <div class="selected-service-chip" id="bookChip">—</div>
       <button class="modal-x" onclick="closeBookModal()" aria-label="Close">&times;</button>
     </div>
-
-    <!-- Form -->
     <div class="book-modal-body" id="bookFormWrap">
       <div class="bf-grid">
-        <div class="bf-group">
-          <label for="bf-fname">First Name</label>
-          <input type="text" id="bf-fname" placeholder="Maria" />
-        </div>
-        <div class="bf-group">
-          <label for="bf-lname">Last Name</label>
-          <input type="text" id="bf-lname" placeholder="Santos" />
-        </div>
-        <div class="bf-group span2">
-          <label for="bf-email">Email Address</label>
-          <input type="email" id="bf-email" placeholder="maria@email.com" />
-        </div>
-        <div class="bf-group span2">
-          <label for="bf-phone">Phone Number</label>
-          <input type="tel" id="bf-phone" placeholder="+1 (289) 000-0000" />
-        </div>
-        <div class="bf-group span2">
-          <label for="bf-date">Possible Date of Service</label>
-          <input type="date" id="bf-date" />
-        </div>
-        <div class="bf-group span2">
-          <label for="bf-notes">Notes / Additional Details</label>
-          <textarea id="bf-notes" placeholder="Share your vision, guest count, theme preferences, or anything else that will help us prepare for your event..."></textarea>
-        </div>
+        <div class="bf-group"><label for="bf-fname">First Name</label><input type="text" id="bf-fname" placeholder="Maria" /></div>
+        <div class="bf-group"><label for="bf-lname">Last Name</label><input type="text" id="bf-lname" placeholder="Santos" /></div>
+        <div class="bf-group span2"><label for="bf-email">Email Address</label><input type="email" id="bf-email" placeholder="maria@email.com" /></div>
+        <div class="bf-group span2"><label for="bf-phone">Phone Number</label><input type="tel" id="bf-phone" placeholder="+1 (289) 000-0000" /></div>
+        <div class="bf-group span2"><label for="bf-date">Possible Date of Service</label><input type="date" id="bf-date" /></div>
+        <div class="bf-group span2"><label for="bf-notes">Notes / Additional Details</label><textarea id="bf-notes" placeholder="Share your vision, guest count, theme preferences..."></textarea></div>
       </div>
-      <div class="bf-actions">
-        <button class="btn-back" onclick="backToSvc()">&larr; Back</button>
-        <button class="btn-book-submit" onclick="submitBooking()">Book Now</button>
-      </div>
+      <div class="bf-actions"><button class="btn-back" onclick="backToSvc()">&larr; Back</button><button class="btn-book-submit" onclick="submitBooking()">Book Now</button></div>
     </div>
-
-    <!-- Success -->
     <div class="book-success" id="bookSuccess">
-      <div class="success-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      </div>
+      <div class="success-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
       <h3>Booking Request Sent!</h3>
       <p>Thank you! We've received your request for:</p>
       <div class="success-svc-name" id="successSvcName"></div>
@@ -1098,32 +868,39 @@
 </div>
 
 <script>
-  /* ── NAV ── */
   const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+  const navBrand = document.getElementById('navBrand');
+  const homeSection = document.getElementById('home');
+  const servicesSection = document.getElementById('services');
+
+  function checkNavBrandVisibility() {
+    if (window.scrollY >= homeSection.offsetHeight * 0.8) {
+      navBrand.classList.add('visible');
+    } else {
+      navBrand.classList.remove('visible');
+    }
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }
+  window.addEventListener('scroll', checkNavBrandVisibility);
+  checkNavBrandVisibility();
+
   document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('open'));
   function closeMobile() { document.getElementById('mobile-menu').classList.remove('open'); }
 
-  /* ── REVEAL ── */
   const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  /* ── CONTACT FORM ── */
   function submitContactForm() {
     if (!document.getElementById('fname').value.trim()) { alert('Please fill in your name.'); return; }
     alert("Thank you! We'll be in touch soon to discuss your event.");
   }
 
-  /* ══════════════════════════════════
-     TESTIMONIALS CAROUSEL
-  ══════════════════════════════════ */
   const track = document.getElementById('carouselTrack');
   const slides = track.querySelectorAll('.carousel-slide');
   const dotsWrap = document.getElementById('carouselDots');
   let current = 0;
   let autoTimer;
 
-  // Build dots
   slides.forEach((_, i) => {
     const d = document.createElement('button');
     d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -1138,47 +915,27 @@
     dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     resetAuto();
   }
-
   document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
   document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
-
-  function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1), 5000);
-  }
+  function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
   resetAuto();
 
-  /* ══════════════════════════════════
-     STEP 1 — SERVICE MODAL
-  ══════════════════════════════════ */
   let activeService = '';
   let activePrice = '';
 
   function openSvcModal(title, desc, price, includes) {
-    activeService = title;
-    activePrice = price;
+    activeService = title; activePrice = price;
     document.getElementById('svcTitle').textContent = title;
     document.getElementById('svcDesc').textContent = desc;
     document.getElementById('svcModalPrice').textContent = price;
-    // Adjust label for custom
     document.querySelector('.mprice-from').textContent = price === 'Custom Quote' ? 'Pricing:' : 'Starting at';
     document.getElementById('svcList').innerHTML = includes.map(i => '<li>' + i + '</li>').join('');
     document.getElementById('svcOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+  function closeSvcModal() { document.getElementById('svcOverlay').classList.remove('active'); document.body.style.overflow = ''; }
+  document.getElementById('svcOverlay').addEventListener('click', function(e) { if (e.target === this) closeSvcModal(); });
 
-  function closeSvcModal() {
-    document.getElementById('svcOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('svcOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeSvcModal();
-  });
-
-  /* ══════════════════════════════════
-     STEP 2 — BOOKING MODAL
-  ══════════════════════════════════ */
   function goToBooking() {
     closeSvcModal();
     setTimeout(() => {
@@ -1190,23 +947,9 @@
       document.body.style.overflow = 'hidden';
     }, 220);
   }
-
-  function closeBookModal() {
-    document.getElementById('bookOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  function backToSvc() {
-    closeBookModal();
-    setTimeout(() => {
-      document.getElementById('svcOverlay').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }, 220);
-  }
-
-  document.getElementById('bookOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeBookModal();
-  });
+  function closeBookModal() { document.getElementById('bookOverlay').classList.remove('active'); document.body.style.overflow = ''; }
+  function backToSvc() { closeBookModal(); setTimeout(() => { document.getElementById('svcOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }, 220); }
+  document.getElementById('bookOverlay').addEventListener('click', function(e) { if (e.target === this) closeBookModal(); });
 
   function submitBooking() {
     const fname = document.getElementById('bf-fname').value.trim();
@@ -1223,10 +966,7 @@
     document.getElementById('bookSuccess').classList.add('show');
   }
 
-  /* ── ESC to close ── */
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeSvcModal(); closeBookModal(); }
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSvcModal(); closeBookModal(); } });
 </script>
 </body>
 </html>
