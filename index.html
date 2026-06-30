@@ -326,37 +326,97 @@
     .showcase-header .section-divider::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(to left, rgba(184,153,88,0.5), transparent); }
     .showcase-header .section-divider::after { background: linear-gradient(to right, rgba(184,153,88,0.5), transparent); }
     .showcase-header .section-divider-dot { background: var(--gold); }
-    .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .showcase-item { aspect-ratio: 4/5; background: rgba(255,255,255,0.08); border: 1px solid rgba(184,153,88,0.2); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.3s; }
-    .showcase-item:hover { border-color: rgba(184,153,88,0.6); }
-    .showcase-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0.15; }
-    .showcase-placeholder svg { width: 60px; height: 60px; }
-    .showcase-label { position: relative; z-index: 1; text-align: center; }
-    .showcase-label span { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; }
-    .showcase-label p { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; margin-top: 0.25rem; }
-    .showcase-coming { text-align: center; margin-top: 3rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.1em; }
+
+    /* Portfolio carousel — single image at a time */
+    .portfolio-carousel-wrap { position: relative; max-width: 760px; margin: 0 auto; }
+    .portfolio-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(184,153,88,0.25);
+      overflow: hidden;
+    }
+    .portfolio-track-outer { width: 100%; height: 100%; overflow: hidden; position: relative; }
+    .portfolio-track { display: flex; height: 100%; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1); will-change: transform; }
+    .portfolio-slide { flex: 0 0 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.15); }
+    .portfolio-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Placeholder styling for empty slides before real photos are added */
+    .portfolio-slide.is-placeholder { flex-direction: column; gap: 0.75rem; color: rgba(255,255,255,0.4); }
+    .portfolio-slide.is-placeholder svg { width: 48px; height: 48px; opacity: 0.5; }
+    .portfolio-slide.is-placeholder span { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; }
+    .portfolio-caption {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(10,20,14,0.85), transparent);
+      padding: 1.75rem 1.75rem 1.1rem;
+      pointer-events: none;
+    }
+    .portfolio-caption span { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; }
+    .portfolio-caption p { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: white; margin-top: 0.25rem; }
+    .portfolio-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+    .portfolio-btn { width: 44px; height: 44px; background: transparent; border: 1.5px solid rgba(184,153,88,0.4); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; color: var(--gold); }
+    .portfolio-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--green); }
+    .portfolio-btn svg { width: 18px; height: 18px; }
+    .portfolio-dots { display: flex; gap: 0.55rem; }
+    .portfolio-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); border: none; cursor: pointer; transition: background 0.25s, transform 0.25s; padding: 0; }
+    .portfolio-dot.active { background: var(--gold); transform: scale(1.3); }
+    .showcase-coming { text-align: center; margin-top: 2.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.1em; }
+    .btn-see-more {
+      display: block; margin: 1.5rem auto 0;
+      background: transparent; color: var(--gold);
+      padding: 0.8rem 2.4rem; border: 1.5px solid rgba(184,153,88,0.55);
+      font-family: 'Lato', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+      cursor: pointer; transition: all 0.25s; width: fit-content;
+    }
+    .btn-see-more:hover { background: var(--gold); color: var(--green); border-color: var(--gold); transform: translateY(-2px); }
 
     /* ── TESTIMONIALS ── */
     #testimonials { background: var(--white); overflow: hidden; }
     .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
-    .carousel-wrap { position: relative; max-width: 860px; margin: 0 auto; }
-    .carousel-track-outer { overflow: hidden; position: relative; }
-    .carousel-track { display: flex; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1); will-change: transform; }
-    .carousel-slide { flex: 0 0 100%; padding: 0 1rem; }
-    .review-card-featured { background: var(--cream); border: 1px solid rgba(184,153,88,0.15); padding: 3rem 3.5rem; position: relative; text-align: center; }
-    .review-card-featured::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 7rem; color: rgba(184,153,88,0.12); line-height: 0.6; position: absolute; top: 2rem; left: 2rem; }
-    .review-text-featured { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2.2vw, 1.2rem); color: #444; line-height: 1.85; font-style: italic; margin-bottom: 2rem; position: relative; z-index: 1; }
-    .review-stars-featured { display: flex; gap: 4px; justify-content: center; margin-bottom: 1.25rem; }
-    .star { color: var(--gold); font-size: 0.9rem; }
-    .reviewer-name-featured { font-size: 1rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
-    .reviewer-event-featured { font-size: 0.78rem; color: var(--berry); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
-    .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; }
-    .carousel-btn { width: 44px; height: 44px; background: transparent; border: 1.5px solid rgba(184,153,88,0.4); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; color: var(--gold); }
-    .carousel-btn:hover { background: var(--green); border-color: var(--green); color: white; }
-    .carousel-btn svg { width: 18px; height: 18px; }
-    .carousel-dots { display: flex; gap: 0.55rem; }
-    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(184,153,88,0.25); border: none; cursor: pointer; transition: background 0.25s, transform 0.25s; padding: 0; }
-    .carousel-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* Testimonial image carousel */
+    .testi-carousel-wrap { position: relative; max-width: 560px; margin: 0 auto; }
+    .testi-frame {
+      position: relative;
+      background: var(--cream);
+      border: 1px solid rgba(184,153,88,0.2);
+      box-shadow: 0 20px 50px rgba(29,91,58,0.08);
+      padding: 1.5rem;
+    }
+    .testi-frame::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; color: rgba(184,153,88,0.15);
+      line-height: 0.6; position: absolute; top: 0.6rem; left: 1rem; z-index: 0;
+    }
+    .testi-track-outer { overflow: hidden; position: relative; z-index: 1; }
+    .testi-track { display: flex; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1); will-change: transform; }
+    .testi-slide { flex: 0 0 100%; display: flex; align-items: center; justify-content: center; padding: 0 0.25rem; }
+    .testi-slide img {
+      width: 100%; max-height: 460px; object-fit: contain;
+      background: white; border: 1px solid rgba(184,153,88,0.12);
+      display: block;
+    }
+    /* Placeholder styling for testimonial slides without an image yet */
+    .testi-slide.is-placeholder {
+      flex-direction: column; gap: 0.65rem;
+      min-height: 220px; color: rgba(29,91,58,0.35);
+      border: 1.5px dashed rgba(184,153,88,0.4);
+      width: 100%;
+    }
+    .testi-slide.is-placeholder svg { width: 40px; height: 40px; opacity: 0.5; }
+    .testi-slide.is-placeholder span { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+    .testi-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.25rem; }
+    .testi-btn { width: 44px; height: 44px; background: transparent; border: 1.5px solid rgba(184,153,88,0.4); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; color: var(--gold); }
+    .testi-btn:hover { background: var(--green); border-color: var(--green); color: white; }
+    .testi-btn svg { width: 18px; height: 18px; }
+    .testi-dots { display: flex; gap: 0.55rem; }
+    .testi-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(184,153,88,0.25); border: none; cursor: pointer; transition: background 0.25s, transform 0.25s; padding: 0; }
+    .testi-dot.active { background: var(--gold); transform: scale(1.3); }
+    .testi-source {
+      text-align: center; margin-top: 1.5rem; font-size: 0.78rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--berry); font-weight: 700;
+    }
 
     /* ── ABOUT US ── */
     #about { background: var(--white); }
@@ -401,10 +461,12 @@
     /* ── FOOTER ── */
     footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 3rem 2rem 2rem; }
     .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
-    .footer-logo { display: flex; align-items: center; gap: 0.75rem; }
-    .footer-logo img { height: 48px; width: 48px; object-fit: contain; opacity: 0.9; }
-    .footer-brand .tribe { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; }
-    .footer-brand .creatives { font-family: 'Playfair Display', serif; font-size: 0.72rem; color: rgba(184,153,88,0.65); letter-spacing: 0.2em; text-transform: uppercase; }
+    .footer-logo { display: flex; align-items: center; gap: 0.85rem; }
+    .footer-logo-img-wrap { width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-img-wrap img { width: 100%; height: 100%; object-fit: contain; opacity: 0.9; display: block; }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.3; }
+    .footer-brand .tribe { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; white-space: nowrap; }
+    .footer-brand .creatives { font-family: 'Playfair Display', serif; font-size: 0.72rem; color: rgba(184,153,88,0.65); letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
     .footer-motto { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(184,153,88,0.5); }
     .footer-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); }
     .footer-bottom { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
@@ -481,7 +543,6 @@
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-image-wrap { max-width: 400px; margin: 0 auto; }
       .services-grid { grid-template-columns: 1fr 1fr; }
-      .showcase-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .bf-grid { grid-template-columns: 1fr; }
       .bf-group.span2 { grid-column: 1; }
@@ -494,7 +555,6 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .services-grid { grid-template-columns: 1fr; }
-      .showcase-grid { grid-template-columns: 1fr; }
       section { padding: 4rem 1.25rem; }
       .form-row { grid-template-columns: 1fr; }
       .contact-form-wrap { padding: 2rem 1.5rem; }
@@ -502,7 +562,7 @@
       .book-modal-head, .book-modal-body { padding-left: 1.4rem; padding-right: 1.4rem; }
       .svc-modal-actions, .bf-actions { flex-direction: column; }
       .btn-next, .btn-book-submit, .btn-cancel, .btn-back { width: 100%; text-align: center; }
-      .review-card-featured { padding: 2rem 1.5rem; }
+      .testi-frame { padding: 1rem; }
     }
   </style>
 </head>
@@ -679,7 +739,29 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
+<!-- ══════════════════════════════════
+     PORTFOLIO — single-image carousel
+     HOW TO ADD YOUR PROJECT PHOTOS:
+     Find the .portfolio-slide blocks below inside #portfolioTrack.
+     Each placeholder slide looks like this:
+
+       <div class="portfolio-slide is-placeholder">
+         ...placeholder icon/text...
+       </div>
+
+     To add a real photo, REPLACE that whole <div> with:
+
+       <div class="portfolio-slide">
+         <img src="assets/portfolio-1.jpg" alt="Describe this project">
+         <div class="portfolio-caption"><span>Event Type</span><p>Project Name</p></div>
+       </div>
+
+     There are 6 placeholder slides ready to go. To add MORE slides,
+     just copy/paste another <div class="portfolio-slide">...</div>
+     block right before the closing </div> of #portfolioTrack —
+     the carousel JS (buildPortfolioDots) automatically detects however
+     many slides are present, so no script changes are needed.
+══════════════════════════════════ -->
 <section id="portfolio">
   <div class="section-inner">
     <div class="showcase-header reveal">
@@ -688,19 +770,81 @@
       <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot" style="background:var(--gold);"></div></div>
       <p style="max-width:520px;margin:0 auto;color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.75;font-weight:300;">A glimpse into the beautiful moments we've helped create for our incredible clients across Ontario.</p>
     </div>
-    <div class="showcase-grid">
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Garden Elegance</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Debut</span><p>Golden Night</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Quinceañera</span><p>Royal Rose Affair</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Anniversary</span><p>Silver Celebration</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Birthday</span><p>Enchanted Forest</p></div></div>
-      <div class="showcase-item reveal"><div class="showcase-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(184,153,88,0.5)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="showcase-label"><span>Bridal Shower</span><p>Botanical Luxe</p></div></div>
+
+    <div class="portfolio-carousel-wrap reveal">
+      <div class="portfolio-frame">
+        <div class="portfolio-track-outer">
+          <div class="portfolio-track" id="portfolioTrack">
+
+            <!-- PORTFOLIO SLIDE 1 — replace placeholder with <img> when ready -->
+            <div class="portfolio-slide">
+              <img src="assets/designandstyling.jpg" alt="Describe this project">
+              <div class="portfolio-caption"><span>Event Type</span><p>Project Name</p></div>
+            </div>
+
+            <!-- PORTFOLIO SLIDE 2 -->
+            <div class="portfolio-slide is-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Add Photo 2 — Debut</span>
+            </div>
+
+            <!-- PORTFOLIO SLIDE 3 -->
+            <div class="portfolio-slide is-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Add Photo 3 — Quinceañera</span>
+            </div>
+
+            <!-- PORTFOLIO SLIDE 4 -->
+            <div class="portfolio-slide is-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Add Photo 4 — Anniversary</span>
+            </div>
+
+            <!-- PORTFOLIO SLIDE 5 -->
+            <div class="portfolio-slide is-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Add Photo 5 — Birthday</span>
+            </div>
+
+            <!-- PORTFOLIO SLIDE 6 -->
+            <div class="portfolio-slide is-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Add Photo 6 — Bridal Shower</span>
+            </div>
+
+            <!-- Add more <div class="portfolio-slide">...</div> blocks here as needed -->
+
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-controls">
+        <button class="portfolio-btn" id="portfolioPrevBtn" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <div class="portfolio-dots" id="portfolioDots"></div>
+        <button class="portfolio-btn" id="portfolioNextBtn" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
     </div>
+
     <p class="showcase-coming">Portfolio photos coming soon — follow us on Facebook for sneak peeks.</p>
+    <button class="btn-see-more" onclick="window.open('https://www.facebook.com/tribecreativescanada','_blank')">See More</button>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ══════════════════════════════════
+     TESTIMONIALS — single-image carousel
+     HOW TO ADD MORE REVIEW SCREENSHOTS:
+     Find the .testi-slide blocks below inside #testiTrack.
+     Each slide currently uses one of the 5 screenshots you provided:
+       assets/testimonial-1.png ... assets/testimonial-5.png
+     To add another, copy a slide block and update the src/alt, e.g.:
+
+       <div class="testi-slide">
+         <img src="assets/testimonial-6.png" alt="Client testimonial 6">
+       </div>
+
+     Place new slides right before the closing </div> of #testiTrack —
+     the dots/arrows update automatically, no script changes needed.
+══════════════════════════════════ -->
 <section id="testimonials">
   <div class="section-inner">
     <div class="testimonials-header reveal">
@@ -708,40 +852,44 @@
       <h2 class="section-title">Client <em>Testimonials</em></h2>
       <div class="section-divider" style="justify-content:center;"><div class="section-divider-dot"></div></div>
     </div>
-    <div class="carousel-wrap reveal">
-      <div class="carousel-track-outer">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide">
-            <div class="review-card-featured">
-              <p class="review-text-featured">"Tribe Creatives made my daughter's debut an absolute dream. Every detail was perfect — from the florals to the timeline. We didn't have to worry about a single thing."</p>
-              <div class="review-stars-featured"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-              <p class="reviewer-name-featured">Maria Santos</p>
-              <p class="reviewer-event-featured">Debut Celebration · Ontario</p>
+
+    <div class="testi-carousel-wrap reveal">
+      <div class="testi-frame">
+        <div class="testi-track-outer">
+          <div class="testi-track" id="testiTrack">
+
+            <div class="testi-slide">
+              <img src="assets/Testimonial(1).png" alt="Client testimonial from Nocturnal Reflections">
             </div>
-          </div>
-          <div class="carousel-slide">
-            <div class="review-card-featured">
-              <p class="review-text-featured">"The team was professional, creative, and truly cared about making our event special. Our quinceañera was beyond anything we could have imagined. Highly recommend!"</p>
-              <div class="review-stars-featured"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-              <p class="reviewer-name-featured">Lucia Reyes</p>
-              <p class="reviewer-event-featured">Quinceañera · Ontario</p>
+
+            <div class="testi-slide">
+              <img src="assets/Testimonial(2).png" alt="Client testimonial from Christine Martin">
             </div>
-          </div>
-          <div class="carousel-slide">
-            <div class="review-card-featured">
-              <p class="review-text-featured">"I was amazed at how stress-free my birthday celebration was. Tribe Creatives handled everything beautifully and the décor was absolutely stunning. 10/10!"</p>
-              <div class="review-stars-featured"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-              <p class="reviewer-name-featured">Christine Dela Cruz</p>
-              <p class="reviewer-event-featured">Birthday Celebration · Ontario</p>
+
+            <div class="testi-slide">
+              <img src="assets/Testimonial(3).png" alt="Client testimonial from Kristine Carmona">
             </div>
+
+            <div class="testi-slide">
+              <img src="assets/Testimonial(4).png" alt="Client testimonial from Rowena Taguiam Gutierrez">
+            </div>
+
+            <div class="testi-slide">
+              <img src="assets/Testimonial(5).png" alt="Client testimonial from Paula Manicad">
+            </div>
+
+            <!-- Add more <div class="testi-slide"><img src="assets/testimonial-6.png" alt="..."></div> blocks here -->
+
           </div>
         </div>
       </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+
+      <div class="testi-controls">
+        <button class="testi-btn" id="testiPrevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-btn" id="testiNextBtn" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
+      <p class="testi-source">As shared on Facebook</p>
     </div>
   </div>
 </section>
@@ -808,8 +956,13 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
-      <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
-      <div class="footer-brand"><span class="tribe">TRIBE CREATIVES</span><span class="creatives">Events &amp; Management</span></div>
+      <div class="footer-logo-img-wrap">
+        <img src="assets/Tribe Creatives 1.png" style="border-radius:25px;">
+      </div>
+      <div class="footer-brand">
+        <span class="tribe">TRIBE CREATIVES</span>
+        <span class="creatives">Events &amp; Management</span>
+      </div>
     </div>
     <p class="footer-motto">Elevating Every Cherished Milestone</p>
     <div class="footer-divider"></div>
@@ -895,30 +1048,37 @@
     alert("Thank you! We'll be in touch soon to discuss your event.");
   }
 
-  const track = document.getElementById('carouselTrack');
-  const slides = track.querySelectorAll('.carousel-slide');
-  const dotsWrap = document.getElementById('carouselDots');
-  let current = 0;
-  let autoTimer;
+  /* ── Generic single-image carousel builder ──
+     Used for both the Portfolio carousel and the Testimonials carousel. */
+  function buildCarousel(trackId, dotsId, prevBtnId, nextBtnId, slideSelector, autoPlayMs) {
+    const track = document.getElementById(trackId);
+    const slides = track.querySelectorAll(slideSelector);
+    const dotsWrap = document.getElementById(dotsId);
+    let current = 0;
+    let autoTimer;
 
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
-    d.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(d);
-  });
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = (dotsId === 'portfolioDots' ? 'portfolio-dot' : 'testi-dot') + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
 
-  function goTo(idx) {
-    current = (idx + slides.length) % slides.length;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    function goTo(idx) {
+      current = (idx + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dotsWrap.querySelectorAll('button').forEach((d, i) => d.classList.toggle('active', i === current));
+      resetAuto();
+    }
+    document.getElementById(prevBtnId).addEventListener('click', () => goTo(current - 1));
+    document.getElementById(nextBtnId).addEventListener('click', () => goTo(current + 1));
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), autoPlayMs); }
     resetAuto();
   }
-  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
-  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
-  function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5000); }
-  resetAuto();
+
+  buildCarousel('portfolioTrack', 'portfolioDots', 'portfolioPrevBtn', 'portfolioNextBtn', '.portfolio-slide', 5500);
+  buildCarousel('testiTrack', 'testiDots', 'testiPrevBtn', 'testiNextBtn', '.testi-slide', 5000);
 
   let activeService = '';
   let activePrice = '';
