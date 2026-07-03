@@ -6,7 +6,6 @@
   <title>Tribe Creatives — Events & Management</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/x-icon" href="assets/TC-ICON.png">  
-  
   <style>
     :root {
       --green: #1D5B3A;
@@ -22,6 +21,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    @font-face {
+    font-family: 'Hello Paris';
+    src: url('assets/Fonts/Hello Paris Sans Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'Hello Paris';
+    src: url('assets/Fonts/Hello Paris Sans Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    }
 
     /* ── NAV ── */
     nav {
@@ -45,8 +58,8 @@
       opacity: 1;
       pointer-events: all;
     }
-    .nav-brand .tribe { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; }
-    .nav-brand .creatives { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 400; color: var(--purple); letter-spacing: 0.2em; text-transform: uppercase; }
+    .nav-brand .tribe { font-family: 'Hello Paris', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--purple); letter-spacing: 0.1em; }
+    .nav-brand .creatives { font-family: 'Hello Paris', sans-serif; font-size: 1.5rem; font-weight: 500; color: var(--green); letter-spacing: 0.01em;  margin-top: -10px;}
     
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { text-decoration: none; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--gold); position: relative; padding-bottom: 3px; transition: color 0.2s; }
@@ -119,23 +132,36 @@
       animation: fadeUp 0.9s 0.25s ease both;
       line-height: 1.05;
     }
-    .hero-wordmark-tribe {
-      font-family: 'Playfair Display', serif;
+
+    /*.hero-wordmark-tribe, .hero-wordmark-be {
+      font-family: 'Hello Paris', sans-serif;
       font-size: clamp(4rem, 10vw, 7.5rem);
       font-weight: 700;
       color: var(--green);
       letter-spacing: 0.03em;
       display: block;
-      line-height: 1;
+      line-height: .5;
+    }*/
+
+    .hero-wordmark-tribe,
+    .hero-wordmark-be {
+    font-family: 'Hello Paris', sans-serif;
+    font-size: clamp(5rem, 10vw, 8rem);
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: .03em;
+    display: inline;
+    line-height: 1;
     }
+    
     .hero-wordmark-creatives {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.4rem, 8.5vw, 6.5rem);
+      font-family: 'Hello Paris', sans-serif;
+      font-size: clamp(4.5rem, 8.5vw, 6rem);
       font-weight: 700;
-      color: var(--purple);
+      color: var(--green);
       letter-spacing: 0.01em;
       display: block;
-      line-height: 1.05;
+      margin-top: -40px;
     }
 
     /* Location label with gold rules */
@@ -314,8 +340,8 @@
     .svc-bg-planning { background-color: #1a2e20; background-image: url('assets/fullevent-planning.jpg'); }
     .svc-bg-design { background-color: #251828; background-image: url('assets/designandstyling.jpg'); }
     .svc-bg-vendor { background-color: #1a2030; background-image: url('assets/vendorcoordination.jpg'); }
-    .svc-bg-debut { background-color: #1e1525; background-image: url('assets/debutcelebration.jpg'); }
-    .svc-bg-dayof { background-color: #0f1e16; background-image: url('assets/day-off coordination.jpg'); }
+    .svc-bg-debut { background-color: #1e1525; background-image: url('assets/day-off coordination.jpg'); }
+    .svc-bg-dayof { background-color: #0f1e16; background-image: url('assets/debutcelebration.jpg'); }
     .svc-bg-custom { background-color: #1d1520; background-image: url('assets/custom-celebration.jpg'); }
 
     /* ── PORTFOLIO ── */
@@ -615,8 +641,11 @@
 
     <!-- Two-color wordmark -->
     <div class="hero-wordmark">
-      <span class="hero-wordmark-tribe">Tribe</span>
-      <span class="hero-wordmark-creatives">Creatives</span>
+    <span class="hero-wordmark-tribe">Tri</span><span class="hero-wordmark-be">Be</span>
+    </div>
+
+    <div class="hero-wordmark-creatives">
+    Creatives
     </div>
 
     <!-- Location with gold rules -->
@@ -655,28 +684,28 @@
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-planning"></div>
         <div class="svc-overlay"></div>
-        <div class="svc-price-badge">From $1,200</div>
+        <div class="svc-price-badge">From $300</div>
         <div class="svc-content">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-          <h3>Full Event Planning</h3>
-          <p>End-to-end coordination from concept and theme development to day-of execution. We manage all logistics so you can enjoy every moment.</p>
-          <span class="service-tag">Birthdays · Debuts · Quinceañeras</span>
-          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$1,200</span><span class="price-unit">/ event</span></div>
-          <button class="btn-book-now" onclick="openSvcModal('Full Event Planning','End-to-end coordination from concept and theme development to day-of execution. We manage vendors, timelines, and all logistics so you can be fully present and enjoy every single moment of your celebration.','$1,200',['Theme & concept development','Vendor sourcing & management','Full timeline creation','Day-of coordination','Budget management'])">Book Now</button>
+          <h3>Hosting</h3>
+          <p>A great celebration starts with a great host. Our professional emcees keep your guests engaged, your program on schedule, and every moment flowing seamlessly.</p>
+          <span class="service-tag">Emcee · Audience Engagement · Event Flow</span>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$300</span><span class="price-unit">/ event</span></div>
+          <button class="btn-book-now" onclick="openSvcModal('Hosting','A great celebration starts with a great host. Our professional emcees keep your guests engaged, your program on schedule, and every moment flowing seamlessly.','$300',['Professional Event Emcee','Program Hosting','Audience Engagement','Script Guidance','Smooth Event Flow'])">Book Now</button>
         </div>
       </div>
 
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-design"></div>
         <div class="svc-overlay"></div>
-        <div class="svc-price-badge">From $650</div>
+        <div class="svc-price-badge">From $300</div>
         <div class="svc-content">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Design &amp; Styling</h3>
-          <p>Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting that reflects your personality.</p>
-          <span class="service-tag">Décor · Florals · Styling</span>
-          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$650</span><span class="price-unit">/ event</span></div>
-          <button class="btn-book-now" onclick="openSvcModal('Design & Styling','Elegant décor, floral arrangements, and bespoke styling curated to transform your venue into a breathtaking setting. Every element is thoughtfully chosen to reflect your personality and vision.','$650',['Custom theme moodboard','Floral arrangements','Table & venue styling','Backdrop & focal point design','Color palette curation'])">Book Now</button>
+          <h3>Decorations</h3>
+          <p>Every event deserves a beautiful setting. We create elegant, personalized décor that transforms your vision into a stunning celebration.</p>
+          <span class="service-tag">Floral Styling · Venue Décor · Themed Setup</span>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$300</span><span class="price-unit">/ event</span></div>
+          <button class="btn-book-now" onclick="openSvcModal('Decorations','Every event deserves a beautiful setting. We create elegant, personalized décor that transforms your vision into a stunning celebration.','$300',['Venue Styling','Floral Arrangements','Backdrop Design','Table Decorations','Themed Event Setup'])">Book Now</button>
         </div>
       </div>
 
@@ -686,25 +715,25 @@
         <div class="svc-price-badge">From $450</div>
         <div class="svc-content">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>Vendor Coordination</h3>
-          <p>We connect you with trusted local vendors — photographers, caterers, entertainers, and more — and manage all communications on your behalf.</p>
-          <span class="service-tag">Catering · Photography · Entertainment</span>
+          <h3>Photo/Studio Booth</h3>
+          <p>Every smile tells a story. Give your guests a fun and interactive way to capture memories they'll cherish long after the celebration ends.</p>
+          <span class="service-tag">Instant Prints · Fun Props · Digital Memories</span>
           <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$450</span><span class="price-unit">/ event</span></div>
-          <button class="btn-book-now" onclick="openSvcModal('Vendor Coordination','We connect you with our trusted network of local vendors — photographers, caterers, entertainers, and more — and handle all communications and logistics on your behalf so you never have to chase a single call or email.','$450',['Vendor sourcing & vetting','Contract negotiation','Communication management','Day-of vendor briefing','Post-event follow-up'])">Book Now</button>
+          <button class="btn-book-now" onclick="openSvcModal('Photo / Studio Booth','Every smile tells a story. Give your guests a fun and interactive way to capture memories they will cherish long after the celebration ends.','$450',['Unlimited Photo Sessions','Instant Prints','Fun Props','Digital Copies','Custom Photo Layout'])"">Book Now</button>
         </div>
       </div>
 
       <div class="service-card reveal">
         <div class="svc-bg svc-bg-debut"></div>
         <div class="svc-overlay"></div>
-        <div class="svc-price-badge">From $1,500</div>
+        <div class="svc-price-badge">From $450</div>
         <div class="svc-content">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-          <h3>Debut Celebrations</h3>
-          <p>A debut is a once-in-a-lifetime milestone. We craft meaningful ceremonies and receptions that celebrate the journey into womanhood with grace and joy.</p>
-          <span class="service-tag">18 Roses · Cotillion · Grand Entrance</span>
-          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$1,500</span><span class="price-unit">/ event</span></div>
-          <button class="btn-book-now" onclick="openSvcModal('Debut Celebrations','A debut is a once-in-a-lifetime milestone, and we treat it that way. We craft meaningful ceremonies and receptions that celebrate the debutante\'s journey into womanhood with elegance, grace, and unforgettable joy.','$1,500',['18 Roses & 18 Candles planning','Cotillion de Honor coordination','Grand entrance choreography','Debut gown liaison','Full reception planning'])">Book Now</button>
+          <h3>Refreshments</h3>
+          <p>Great moments are shared over great food. We provide refreshments that keep your guests satisfied and complement your celebration perfectly.</p>
+          <span class="service-tag">Food & Beverages · Guest Catering · Refreshment Station</span>
+          <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$450</span><span class="price-unit">/ event</span></div>
+          <button class="btn-book-now" onclick="openSvcModal('Refreshments','Great moments are shared over great food. We provide refreshments that keep your guests satisfied and complement your celebration perfectly.','$450',['Food & Beverage Service','Buffet Setup','Snack & Dessert Station','Beverage Station','Professional Serving Staff'])"">Book Now</button>
         </div>
       </div>
 
@@ -714,11 +743,11 @@
         <div class="svc-price-badge">From $380</div>
         <div class="svc-content">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <h3>Day-Of Coordination</h3>
-          <p>Already planned your event? Let us step in on the day to ensure every timeline is followed, every vendor is in place, and every moment runs perfectly.</p>
-          <span class="service-tag">Timeline · Logistics · On-Site Management</span>
+          <h3>Program Management</h3>
+          <p>A memorable event begins with a well-planned program. We organize every segment to ensure a smooth, engaging, and stress-free experience.</p>
+          <span class="service-tag">Program Flow · Stage Management · Timeline Execution</span>
           <div class="svc-price-line"><span class="price-from">Starting at</span><span class="price-amount">$380</span><span class="price-unit">/ event</span></div>
-          <button class="btn-book-now" onclick="openSvcModal('Day-Of Coordination','Already planned everything? Let us step in on your big day to ensure every timeline is followed, every vendor is in place, and every moment unfolds exactly as you envisioned — without you lifting a finger.','$380',['Pre-event timeline review','Vendor confirmation calls','On-site coordination team','Guest & flow management','Problem-solving on the spot'])">Book Now</button>
+          <button class="btn-book-now" onclick="openSvcModal('Program Management','A memorable event begins with a well-planned program. We organize every segment to ensure a smooth, engaging, and stress-free experience.','$380',['Program Flow Planning','Event Script Preparation','Timeline Management','Stage Cue Coordination','Host Coordination'])"">Book Now</button>
         </div>
       </div>
 
@@ -728,11 +757,11 @@
         <div class="svc-price-badge">Custom Quote</div>
         <div class="svc-content">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <h3>Custom Celebrations</h3>
-          <p>Every milestone deserves to be celebrated. Whether it's a quinceañera, bridal shower, or milestone anniversary, we bring your unique vision to life.</p>
-          <span class="service-tag">Quinceañeras · Showers · Anniversaries</span>
+          <h3>Event Coordination</h3>
+          <p>Every milestone deserves to be celebrated. Whether it's a birthday, formal event, quinceañera, bridal shower, or milestone anniversary, we bring your unique vision to life.</p>
+          <span class="service-tag">Timeline · Vendor Coordination · On-Site Management</span>
           <div class="svc-price-line"><span class="price-from">Pricing</span><span class="price-amount" style="font-size:1.05rem;letter-spacing:0.02em;">Custom</span><span class="price-unit">· inquire below</span></div>
-          <button class="btn-book-now" onclick="openSvcModal('Custom Celebrations','Every milestone deserves to be celebrated in a way that feels uniquely yours. Whether it\'s a quinceañera, bridal shower, milestone anniversary, or any cherished occasion, we bring your vision to life with creativity and heart.','Custom Quote',['Fully custom concept design','Theme & décor planning','Catering & entertainment curation','Invitation & stationery design','Complete event execution'])">Book Now</button>
+          <button class="btn-book-now" onclick="openSvcModal('Event Coordination','Already planned your event? Let us take over on the day, ensuring every timeline is followed, every vendor is coordinated, and every detail unfolds flawlessly.','Custom Quote',['Timeline Management','Vendor Coordination','Guest Assistance','On-Site Event Supervision','Issue Resolution'])"">Book Now</button>
         </div>
       </div>
 
@@ -932,6 +961,7 @@
           <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg></div><div class="contact-row-text"><strong>Phone</strong><a href="tel:12898879791">1 289-887-9791</a></div></div>
           <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="contact-row-text"><strong>Email</strong><a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a></div></div>
           <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="contact-row-text"><strong>Facebook</strong><a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">@tribecreativescanada</a></div></div>
+          <div class="contact-row"><div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line><path d="M16 11.37a4 4 0 1 1-7.75 1.24 4 4 0 0 1 7.75-1.24z"></path></svg></div><div class="contact-row-text"><strong>Instagram</strong><a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">@events.tribecreatives</a></div></div>
         </div>
       </div>
       <div class="contact-form-wrap reveal">
@@ -941,10 +971,16 @@
           <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Santos" /></div>
         </div>
         <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="maria@email.com" /></div>
-        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="+1 (289) 000-0000" /></div>
+        <div class="form-group"><label for="phone">Contact Number</label><input type="tel" id="phone" placeholder="+1 (289) 000-0000" /></div>
         <div class="form-group">
           <label for="event-type">Event Type</label>
           <select id="event-type"><option value="" disabled selected>Select an event type</option><option>Birthday Celebration</option><option>Debut (18th Birthday)</option><option>Quinceañera</option><option>Bridal Shower</option><option>Anniversary</option><option>Other</option></select>
+        </div>
+        <div class="form-group">
+          <label for="event-location">Event Location</label>
+          <input type="text"
+            id="event-location"
+            placeholder="e.g. Hamilton Convention Centre, Ontario"/>
         </div>
         <div class="form-group"><label for="message">Tell Us About Your Event</label><textarea id="message" placeholder="Share your vision, preferred date, guest count, and any other details..."></textarea></div>
         <button class="btn-primary" style="width:100%;" onclick="submitContactForm()">Send Message</button>
@@ -967,7 +1003,7 @@
     </div>
     <p class="footer-motto">Elevating Every Cherished Milestone</p>
     <div class="footer-divider"></div>
-    <p class="footer-bottom">&copy; 2025 Tribe Creatives — Ontario, Canada &nbsp;·&nbsp;<a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a> &nbsp;·&nbsp;<a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">Facebook</a></p>
+    <p class="footer-bottom">&copy; 2023 Tribe Creatives — Ontario, Canada &nbsp;·&nbsp;<a href="mailto:bn_main@outlook.com">bn_main@outlook.com</a> &nbsp;·&nbsp;<a href="https://www.facebook.com/tribecreativescanada" target="_blank" rel="noopener">Facebook</a></p>
   </div>
 </footer>
 
@@ -1000,16 +1036,70 @@
       <button class="modal-x" onclick="closeBookModal()" aria-label="Close">&times;</button>
     </div>
     <div class="book-modal-body" id="bookFormWrap">
-      <div class="bf-grid">
-        <div class="bf-group"><label for="bf-fname">First Name</label><input type="text" id="bf-fname" placeholder="Maria" /></div>
-        <div class="bf-group"><label for="bf-lname">Last Name</label><input type="text" id="bf-lname" placeholder="Santos" /></div>
-        <div class="bf-group span2"><label for="bf-email">Email Address</label><input type="email" id="bf-email" placeholder="maria@email.com" /></div>
-        <div class="bf-group span2"><label for="bf-phone">Phone Number</label><input type="tel" id="bf-phone" placeholder="+1 (289) 000-0000" /></div>
-        <div class="bf-group span2"><label for="bf-date">Possible Date of Service</label><input type="date" id="bf-date" /></div>
-        <div class="bf-group span2"><label for="bf-notes">Notes / Additional Details</label><textarea id="bf-notes" placeholder="Share your vision, guest count, theme preferences..."></textarea></div>
-      </div>
-      <div class="bf-actions"><button class="btn-back" onclick="backToSvc()">&larr; Back</button><button class="btn-book-submit" onclick="submitBooking()">Book Now</button></div>
+  <div class="bf-grid">
+
+    <div class="bf-group">
+      <label for="bf-fname">First Name</label>
+      <input type="text" id="bf-fname" placeholder="Maria" required />
     </div>
+
+    <div class="bf-group">
+      <label for="bf-lname">Last Name</label>
+      <input type="text" id="bf-lname" placeholder="Santos" required />
+    </div>
+
+    <div class="bf-group span2">
+      <label for="bf-email">Email Address</label>
+      <input type="email" id="bf-email" placeholder="maria@email.com" required />
+    </div>
+
+    <div class="bf-group span2">
+      <label for="bf-phone">Contact Number</label>
+      <input type="tel" id="bf-phone" placeholder="+1 (289) 000-0000" required />
+    </div>
+
+    <div class="bf-group">
+      <label for="bf-event-type">Event Type</label>
+      <select id="bf-event-type" required>
+        <option value="" disabled selected>Select an event type</option>
+        <option>Birthday Celebration</option>
+        <option>Debut (18th Birthday)</option>
+        <option>Quinceañera</option>
+        <option>Bridal Shower</option>
+        <option>Anniversary</option>
+        <option>Wedding</option>
+        <option>Corporate Event</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="bf-group">
+      <label for="bf-guest-count">Estimated Guest Count <small>(Optional)</small></label>
+      <input type="number" id="bf-guest-count" placeholder="e.g. 150" min="1" />
+    </div>
+
+    <div class="bf-group span2">
+      <label for="bf-location">Event Location</label>
+      <input type="text" id="bf-location" placeholder="e.g. Hamilton Convention Centre, Ontario" required />
+    </div>
+
+    <div class="bf-group span2">
+      <label for="bf-date">Preferred Event Date</label>
+      <input type="date" id="bf-date" required />
+    </div>
+
+    <div class="bf-group span2">
+      <label for="bf-notes">Tell Us About Your Event</label>
+      <textarea id="bf-notes" placeholder="Share your vision, preferred theme, program ideas, special requests, and any other details..." required></textarea>
+    </div>
+
+  </div>
+
+  <div class="bf-actions">
+    <button class="btn-back" onclick="backToSvc()">&larr; Back</button>
+    <button class="btn-book-submit" onclick="submitBooking()">Book Consultation</button>
+  </div>
+</div>
     <div class="book-success" id="bookSuccess">
       <div class="success-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#1D5B3A" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
       <h3>Booking Request Sent!</h3>
@@ -1020,6 +1110,7 @@
     </div>
   </div>
 </div>
+<!-- STEP 2 MODAL -->
 
 <script>
   const nav = document.getElementById('main-nav');
