@@ -804,16 +804,40 @@ function clearAllErrors(container) {
 const PORTFOLIO_DATA = [
 
   {
-    src:       'assets/Portfolio/s-photobooth-1.jpg', // path to your image
+    src:       'assets/Services/s-photobooth-1.jpg', // path to your image
     eventType: 'Family Portrait',    // gold label shown top-left of slide
     title:     'Studio Booth / Photobooth', // white title shown below label
     bg:        '#1d1520'             // background colour while image loads
   },
 
   {
-    src:       'assets/Portfolio/s-photobooth-1.jpg', // path to your image
-    eventType: 'Family Portrait',    // gold label shown top-left of slide
-    title:     'Studio Booth / Photobooth', // white title shown below label
+    src:       'assets/Services/s-backdrop-3.jpg', // path to your image
+    eventType: 'Birthday',    // gold label shown top-left of slide
+    title:     'Backdrop / Photo Booth', // white title shown below label
+    bg:        '#1d1520'             // background colour while image loads
+  },
+  {
+    src:       'assets/Services/s-refreshment-1.jpg', // path to your image
+    eventType: 'Refreshment Birthday Cake / Dessert',    // gold label shown top-left of slide
+    title:     'Cake / Dessert', // white title shown below label
+    bg:        '#1d1520'             // background colour while image loads
+  },
+  {
+    src:       'assets/Services/s-backdrop-closeup-2.jpg', // path to your image
+    eventType: 'Wedding',    // gold label shown top-left of slide
+    title:     'Full Event Setup / Stage Stup', // white title shown below label
+    bg:        '#1d1520'             // background colour while image loads
+  },
+  {
+    src:       'assets/Services/s-stage-setup-2.jpg', // path to your image
+    eventType: 'Birthday',    // gold label shown top-left of slide
+    title:     'Stage Setup', // white title shown below label
+    bg:        '#1d1520'             // background colour while image loads
+  },
+  {
+    src:       'assets/Services/s-backdrop-6.jpg', // path to your image
+    eventType: 'Birthday',    // gold label shown top-left of slide
+    title:     'Backdrop Decorations', // white title shown below label
     bg:        '#1d1520'             // background colour while image loads
   },
   // PASTE NEW SLIDES BELOW THIS LINE --------------------------------
@@ -912,13 +936,11 @@ function renderPortfolio() {
 const SERVICE_DATA = {
 
   /* HOSTING — change name here to rename the service everywhere */
-  hosting: {
+ hosting: {
     name: 'Event Hosting',
     pages: [
-      { eventType: 'Birthday',        title: 'Birthday Hosting',        price: '$320', priceLabel: 'Starting at', desc: 'Our lively emcee sets the perfect tone for your birthday bash — from the grand entrance to the final toast. We keep your guests engaged and your program running right on time.', includes: ['Professional Event Emcee','Customized Birthday Script','Audience Games & Engagement','Program Timing & Flow','Toast & Dedication Hosting'], image: 'assets/Services/s-fullevent-setup-1.jpg' },
-      { eventType: 'Debut',           title: 'Debut Hosting',           price: '$330', priceLabel: 'Starting at', desc: 'A debut is a once-in-a-lifetime milestone. Our emcee gracefully guides every ceremonial moment — from the 18 roses to the cotillion — with elegance and heart.', includes: ['Formal Debut Emcee','18 Roses & Candles Narration','Cotillion Introduction','Grand Entrance Hosting','Heartfelt Message Delivery'], image: 'assets/Services/s-fullevent-setup-2.jpg' },
-      { eventType: 'Quinceañera',     title: 'Quinceañera Hosting',     price: '$380', priceLabel: 'Starting at', desc: 'Celebrate this beautiful coming-of-age tradition with an emcee who honors its cultural significance while keeping the party vibrant and the memories unforgettable.', includes: ['Bilingual Emcee Option','Vals Ceremony Narration','Chambelanes Introduction','Surprise Segment Hosting','Cultural Traditions Honored'], image: 'assets/Services/s-fullevent-setup-3.jpg' },
-      { eventType: 'Custom', title: 'Custom Hosting Package', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'From anniversaries and bridal showers to corporate gatherings, our emcees adapt to any tone — formal, festive, or somewhere in between.', includes: ['Tailored Event Script','Professional Emcee','Award & Recognition Hosting','Panel & Program Management','Custom Flow Design'], image: 'assets/Services/s-fullevent-setup-4.jpg' }
+      { eventType: 'Premium', title: 'Premium Hosting', price: '$500', priceLabel: 'Starting at', desc: 'Full-service hosting featuring audience engagement, interactive games, and professional program direction.', includes: ['Professional Event Emcee','Basic Script Writing','Key Announcements','Microphone Handling','Full Script & Speech Writing','Interactive Games & Engagement','Comprehensive Program Management','VIP Guest Handling'], image: 'assets/Services/s-fullevent-setup-1.jpg' },
+      { eventType: 'Custom', title: 'Custom Hosting Package', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'Tailored hosting for unique events, brand launches, or specific events or ceremonies. Define your dream, and allow us to handle the details.', includes: ['Tailored Event Script','Dedicated Event Emcee','Special Segment Hosting','Panel & Program Management','Custom Flow Design'], image: 'assets/Services/s-fullevent-setup-4.jpg' }
     ]
   },
 
@@ -926,10 +948,10 @@ const SERVICE_DATA = {
   decorations: {
     name: 'Decorations / Backdrop',
     pages: [
-      { eventType: 'Birthday',    title: 'Birthday Décor Package',     price: '$300', priceLabel: 'Starting at', desc: 'From balloon arches to floral centrepieces, we create a vibrant, personalized setting that makes the birthday person feel like the star of the show.', includes: ['Custom Theme Concept','Balloon Installations','Table & Venue Styling','Floral Centrepieces','Photo-Ready Backdrop'], image: 'assets/Services/s-backdrop-5.jpg' },
-      { eventType: 'Debut',       title: 'Debut Décor Package',        price: '$380', priceLabel: 'Starting at', desc: 'Elegant, romantic décor befitting a debut — think soft florals, candlelit tablescapes, and a show-stopping backdrop for the grand entrance.', includes: ['Romantic Floral Arrangements','Elegant Table Styling','Debutante Throne/Chair Setup','Entrance Arch or Floral Gate','Custom Color Palette'], image: 'assets/Services/s-backdrop-2.jpg' },
-      { eventType: 'Backdrop Only', title: 'Quinceañera Décor Package', price: '$420', priceLabel: 'Starting at', desc: 'Rich, vibrant, and royally beautiful — our Quinceañera décor packages are designed to make every corner of your venue Instagram-worthy.', includes: ['Royal Throne Setup','Cascading Floral Backdrop','Specialty Linen & Draping','Tiara & Crown Display','Ambient Lighting Design'], image: 'assets/Services/s-backdrop-3.jpg' },
-      { eventType: 'Custom', title: 'Custom Decoration Package',    price: 'Custom Quote', priceLabel: 'Want to have a custom package? The team will contact you within 24 hours to discuss this with you', includes: ['Custom Backdrop Design','Professional Installation','Themed Props (Optional Add-On)','Floral Accents Available','Removal & Cleanup Included'], image: 'assets/Services/s-backdrop-4.jpg' }
+      { eventType: 'Basic', title: 'Basic Décor Package', price: '$250', priceLabel: 'Starting at', desc: 'Simple, elegant backdrop setup with essential table styling and accent lighting.', includes: ['Single Backdrop Setup','Accent Lighting','Table Top Styling','Essential Floral Accents','Setup & Breakdown'], image: 'assets/Services/s-backdrop-5.jpg' },
+      { eventType: 'Standard', title: 'Standard Décor Package', price: '$450', priceLabel: 'Starting at', desc: 'Themed decor, balloon or floral installations, and a cohesive design that brings a specific vision to life.', includes: ['Themed Backdrop Design','Balloon or Floral Installations','Full Table & Venue Styling','Cohesive Color Palette','Custom Accent Pieces'], image: 'assets/Services/s-backdrop-2.jpg' },
+      { eventType: 'Premium', title: 'Premium Décor Package', price: '$700', priceLabel: 'Starting at', desc: 'Full-room transformation including 3D backdrops, premium linens, custom structural pieces, and ambient lighting.', includes: ['Full Room Transformation','Custom 3D Backdrop Setup','Premium Linens & Draping','Floral Centerpiece Clusters','Ambient Uplighting Design'], image: 'assets/Services/s-backdrop-3.jpg' },
+      { eventType: 'Custom', title: 'Custom Decoration Package', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'Environment creation, including unique structural installations, specialty prop sourcing, and personalized theme development. Define your dream, and allow us to handle the details.', includes: ['Backdrop Design','Unique Structural Installations','Specialty Prop Sourcing','Personalized Theme Development','Professional Installation Team'], image: 'assets/Services/s-backdrop-4.jpg' }
     ]
   },
 
@@ -937,12 +959,10 @@ const SERVICE_DATA = {
   photobooth: {
     name: 'Photo / Studio Booth',
     pages: [
-      { eventType: 'Open-Air Booth', title: 'Open-Air Photo Booth',       price: '$450', priceLabel: 'Starting at', desc: 'Our open-air setup fits any venue size and lets guests snap unlimited fun memories with custom props. Instant prints and digital copies included.', includes: ['Unlimited Photo Sessions','Instant 4x6 Prints','Fun Themed Props','Digital Gallery Access','Custom Photo Border Design'], image: 'assets/Services/s-photobooth-1.jpg' },
-      { eventType: 'Studio Booth',   title: 'Enclosed Studio Booth',       price: '$550', priceLabel: 'Starting at', desc: 'A fully enclosed, professional studio booth with premium lighting — perfect for debuts and formal events where polished portraits matter.', includes: ['Professional Studio Lighting','High-Res DSLR Quality','Enclosed Privacy Booth','Instant Print Station','Digital Delivery Same Night'], image: 'assets/Services/s-backdrop-6.jpg' },
-      /* To rename "360 Slow-Mo Video Booth" or change its price, edit ONLY here.
-         The change updates: modal title, image badge, footer pill, booking chip. */
-      { eventType: '360 Video Booth', title: '360 Slow-Mo Video Booth', price: '$650', priceLabel: 'Starting at', desc: 'The ultimate wow-factor experience — guests step onto the platform and our rotating camera captures a stunning slow-motion 360 video they can share instantly.', includes: ['360 Rotating Camera Rig','Slow-Motion Video Clips','Instant Social Sharing','Custom Video Overlay','Dedicated Booth Attendant'], image: 'assets/Services/s-backdrop-7.jpg' },
-      { eventType: 'Custom Photo / Studio Booth', title: 'Custom Photo Booth Package', price: 'Custom Quote', priceLabel: 'Starting at', desc: 'The ultimate wow-factor experience — guests step onto the platform and our rotating camera captures a stunning slow-motion 360 video they can share instantly.', includes: ['360 Rotating Camera Rig','Slow-Motion Video Clips','Instant Social Sharing','Custom Video Overlay','Dedicated Booth Attendant'], image: 'assets/Services/s-stage-setup-4.jpg' }
+      { eventType: 'Basic', title: 'Basic Booth', price: '$300', priceLabel: 'Starting at', desc: 'Digital-only photo capture, social media sharing station, and a digital gallery.', includes: ['Digital Photo Capture','Standard Backdrop','Instant Social Sharing','Digital Gallery Access'], image: 'assets/Services/s-photobooth-1.jpg' },
+      { eventType: 'Standard', title: 'Standard Booth', price: '$450', priceLabel: 'Starting at', desc: 'Unlimited high-quality physical prints, themed props, and a professional on-site attendant.', includes: ['Unlimited Photo Sessions','Instant Prints','Themed Prop Collection','Digital Sharing Station','Professional On-Site Attendant'], image: 'assets/Services/s-backdrop-6.jpg' },
+      { eventType: 'Premium', title: 'Premium Booth', price: '$600', priceLabel: 'Starting at', desc: 'Studio-grade lighting, high-resolution DSLR quality, custom branding/overlays, and live retouching.', includes: ['Studio-Grade Lighting','Professional DSLR Quality','High-Res Print Station','Custom Photo Border/Branding','Live Image Retouching'], image: 'assets/Services/s-backdrop-7.jpg' },
+      { eventType: 'Custom', title: 'Custom Booth Package', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'Specialized activations like 360-video rigs, fully branded interfaces, or custom green-screen effects. Define your dream, and allow us to handle the details.', includes: ['360 or Custom Rig Options','Video/Photo Overlays','Fully Branded Interface','Custom Backdrop/Props','On-Site Technical Support'], image: 'assets/Services/s-stage-setup-4.jpg' }
     ]
   },
 
@@ -950,11 +970,7 @@ const SERVICE_DATA = {
   refreshments: {
     name: 'Refreshments',
     pages: [
-      { eventType: 'Dessert Station',  title: 'Dessert Station',                price: '$300', priceLabel: 'Starting at', desc: 'A beautifully styled dessert spread featuring themed cakes, cupcakes, macarons, and sweet treats — a visual and edible centerpiece for your celebration.', includes: ['Custom Theme Styling','Assorted Dessert Selection','Themed Display Setup','Candy & Treat Jars','Serving Staff Included'], image: 'assets/Services/s-refreshment-1.jpg' },
-      { eventType: 'Buffet Package',   title: 'Full Buffet Package',            price: '$450', priceLabel: 'Starting at', desc: 'A hearty, elegant buffet spread with professional serving staff to keep your guests satisfied throughout the celebration.', includes: ['Curated Food Menu','Chafing & Display Setup','Professional Serving Staff','Buffet Table Styling','Post-Event Cleanup'], image: 'assets/Services/s-refreshment-1.jpg' },
-      { eventType: 'Beverage Station', title: 'Signature Beverage Station',     price: '$250', priceLabel: 'Starting at', desc: 'From custom mocktails to sparkling punch stations, our beverage bar adds elegance and a personalized touch that guests will talk about all night.', includes: ['Signature Mocktail Creation','Sparkling Drinks Bar','Custom Drink Labels','Elegant Glassware','Station Attendant Included'], image: 'assets/Services/s-refreshment-1.jpg' },
-      { eventType: 'Full Package',     title: 'Refreshments Package',  price: '$650', priceLabel: 'Starting at', desc: 'The complete refreshments experience — buffet, dessert station, and beverage bar all coordinated by our team from setup to cleanup.', includes: ['Full Buffet & Staff','Dessert Display Station','Signature Beverage Bar','Coordinated Table Styling','Full Event Coverage'], image: 'assets/Services/s-refreshment-1.jpg' }, 
-      { eventType: 'Custom Package',   title: 'Custom Package',  price: 'Custom Quote', priceLabel: 'Starting at', desc: 'The complete refreshments experience — buffet, dessert station, and beverage bar all coordinated by our team from setup to cleanup.', includes: ['Full Buffet & Staff','Dessert Display Station','Signature Beverage Bar','Coordinated Table Styling','Full Event Coverage'], image: 'assets/Services/s-refreshment-1.jpg' }
+      { eventType: 'Custom', title: 'Custom Refreshment Package', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'A fully personalized menu, including specialty cuisines, specific dietary accommodations, and chef-led service. Define your dream, and allow us to handle the details.', includes: ['Menu Planning','Event-Specific Styling','Customized Beverage Service','Dedicated Event Management'], image: 'assets/Services/s-refreshment-1.jpg' }
     ]
   },
 
@@ -962,21 +978,15 @@ const SERVICE_DATA = {
   program: {
     name: 'Program Management',
     pages: [
-      { eventType: 'Birthday',    title: 'Birthday Program Management',     price: '$380', priceLabel: 'Starting at', desc: 'We plan and execute every segment of your birthday program — from the opening number to the final dance — so you can be fully present in every moment.', includes: ['Detailed Program Script','Timeline & Cue Management','Stage Coordination','Entertainer & Guest Cuing','Real-Time Adjustments'], image: 'assets/Services/s-fullevent-setup-4.jpg' },
-      { eventType: 'Debut',       title: 'Debut Program Management',        price: '$450', priceLabel: 'Starting at', desc: 'Debuts are intricate celebrations with multiple ceremonies. We handle every cue, every transition, and every surprise so nothing is left to chance.', includes: ['Full Debut Program Script','Cotillion Cue Coordination','Surprise Segment Staging','Parent Dance Timing','On-Site Program Director'], image: 'assets/Services/s-fullevent-setup-4.jpg' },
-      { eventType: 'Quinceañera', title: 'Quinceañera Program Management', price: '$500', priceLabel: 'Starting at', desc: 'From the vals to the toast, we manage every element of your Quinceañera program with cultural sensitivity and flawless precision.', includes: ['Custom Quinceañera Script','Vals & Choreography Cuing','Chambelanes Coordination','Video/Slideshow Timing','Bilingual Program Support'], image: 'assets/Services/s-fullevent-setup-4.jpg' }, 
-      { eventType: 'Custom Program Management', title: 'Custom Program Management Package', price: 'Custom Quote', priceLabel: 'Starting at', desc: 'From the vals to the toast, we manage every element of your Quinceañera program with cultural sensitivity and flawless precision.', includes: ['Custom Quinceañera Script','Vals & Choreography Cuing','Chambelanes Coordination','Video/Slideshow Timing','Bilingual Program Support'], image: 'assets/Services/s-fullevent-setup-4.jpg' }
+      { eventType: 'Custom', title: 'Custom Program Management', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'Specialized management for multi-day events, gala productions, or unique performances requiring production support. Define your dream, and allow us to handle the details.', includes: ['Program Design','Multi-Stage Management','Technical Production Liaison','Personalized Client Support','On-Site Executive Director'], image: 'assets/Services/s-fullevent-setup-4.jpg' }
     ]
   },
 
   /* EVENT COORDINATION — change name here to rename everywhere */
   coordination: {
-    name: 'Event Coordination',
+    name: 'Custom Event',
     pages: [
-      { eventType: 'Birthday Package',    title: 'Birthday Full Coordination',     price: '$600',        priceLabel: 'Starting at', desc: 'From vendor management to day-of logistics, our coordination team handles everything so you can arrive as a guest at your own party.', includes: ['Full Vendor Coordination','Day-Of Timeline Management','Guest Flow & Logistics','On-Site Coordination Team','Post-Event Wrap-Up'], image: 'assets/Services/s-fullevent-setup-4.jpg' },
-      { eventType: 'Debut Package',       title: 'Debut Full Coordination',        price: '$800',        priceLabel: 'Starting at', desc: 'Our most comprehensive debut package — we coordinate every supplier, every ceremony detail, and every beautiful moment from setup to final bow.', includes: ['Venue & Vendor Coordination','Full Ceremony Management','Debutante Day-Of Support','Hair & Makeup Schedule','Complete Event Timeline'], image: 'assets/Services/s-fullevent-setup-4.jpg' },
-      { eventType: 'Quinceañera Package', title: 'Quinceañera Full Coordination',  price: '$900',        priceLabel: 'Starting at', desc: 'A fully immersive coordination experience that honors every tradition and personal touch of your Quinceañera — from the church to the last dance.', includes: ['Church-to-Reception Coverage','Full Supplier Management','Cultural Ceremony Coordination','Guest & Family Liaison','Complete Day Timeline'], image: 'assets/Services/s-fullevent-setup-4.jpg' },
-      { eventType: 'Custom Event Coordination',      title: 'Custom Event Coordination Package',      price: 'Custom Quote', priceLabel: 'Pricing',    desc: 'Bridal showers, anniversaries, corporate events — if it matters to you, it matters to us. Tell us your vision and we will build a coordination plan around it.', includes: ['Custom Scope Planning','Tailored Vendor Network','Flexible Timeline Building','On-Site Team Assigned','Personalized Client Support'], image: 'assets/Services/s-fullevent-setup-4.jpg' }
+      { eventType: 'Custom', title: 'Custom Event Package', price: 'Custom Quote', priceLabel: 'Pricing', desc: 'A completely personalized event solution built from scratch to meet specific, non-standard event requirements. Define your dream, and allow us to handle the details.', includes: ['Personalized Event Scope','Tailored Vendor Network','Flexible Budget Planning','Dedicated Coordination Team','Execution Strategy'], image: 'assets/Services/s-fullevent-setup-4.jpg' }
     ]
   }
 
